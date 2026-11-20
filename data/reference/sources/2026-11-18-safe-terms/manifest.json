@@ -1,0 +1,105 @@
+{
+ "what": "terms of the SAFE public use file, data-use terms of the two API providers, SAFE questionnaires of the question waves",
+ "files": [
+  {
+   "file": "SAFE_microdata_disclaimer_and_user_agreement.en.html",
+   "url": "https://www.ecb.europa.eu/services/data-protection/privacy-statements/html/SAFE_microdata_disclaimer_and_user_agreement.en.html",
+   "read_on": "2026-11-18",
+   "sha256": "96b4fbee3738b9683507d501844863d9aa4a2c4337ddc0088a8f5548f5a42e09",
+   "bytes": 101035,
+   "quotes": [
+    "You will not use the data for any purpose other than for scientific purposes or in support of measures or decisions concerning any particular establishment, enterprise, economic entity or other undertaking.",
+    "You will not disclose or otherwise employ the data for commercial purposes.",
+    "You will refrain from any attempt to de-anonymise the data, and you will not combine the data with data from other databases containing information on individual establishments or enterprises with that aim in mind.",
+    "The data source must be cited as: 'EC/ECB Survey on the access to finance of enterprises'. ... 'This paper uses data from the EC/ECB Survey on the access to finance of enterprises'.",
+    "You will send a copy of your research work based on SAFE data to the ECB by email to: survey.accesstofinance@ecb.europa.eu"
+   ],
+   "note": "page fetched as served on that day; dynamic parts of a web page change its checksum between fetches"
+  },
+  {
+   "file": "www.anthropic.com_legal_commercial-terms.html",
+   "url": "https://www.anthropic.com/legal/commercial-terms",
+   "read_on": "2026-11-18",
+   "sha256": "56b1ae9520197223638863c4a497ddf81078710ecb5730f9b1bf8806a30cf1c5",
+   "bytes": 213242,
+   "quotes": [
+    "Effective Jun 17, 2025",
+    "Anthropic may not train models on Customer Content from Services.",
+    "Data submitted through the Services will be processed in accordance with the Anthropic Data Processing Addendum"
+   ],
+   "note": "page fetched as served on that day; dynamic parts of a web page change its checksum between fetches"
+  },
+  {
+   "file": "privacy.anthropic.com_en_articles_7996868-is-my-data-used-for-model-training.html",
+   "url": "https://privacy.anthropic.com/en/articles/7996868-is-my-data-used-for-model-training",
+   "read_on": "2026-11-18",
+   "sha256": "c9d0a0ca3287b5742e852738d106dc794b996967d25186a7c703a607bedfc4e7",
+   "bytes": 101715,
+   "quotes": [
+    "August 18, 2026",
+    "By default, we will not use your inputs or outputs from our commercial products (e.g. Claude for Work, Anthropic API, Claude Gov, etc.) to train our models."
+   ],
+   "note": "page fetched as served on that day; dynamic parts of a web page change its checksum between fetches"
+  },
+  {
+   "file": "platform.openai.com_docs_guides_your-data.html",
+   "url": "https://platform.openai.com/docs/guides/your-data",
+   "read_on": "2026-11-18",
+   "sha256": "1b51aafee058294e9fb85289645e78e0bb88d137bf7dd43bb672a8accbe7f250",
+   "bytes": 456579,
+   "quotes": [
+    "As of March 1, 2023, data sent to the OpenAI API is not used to train or improve OpenAI models (unless you explicitly opt in to share data with us).",
+    "By default, abuse monitoring logs are generated for all API feature usage and retained for up to 30 days, unless longer retention is required by law, or is reasonably necessary to protect our services or any third party from harm.",
+    "/v1/responses: data used for training No; abuse monitoring retention 30 days; application state retention None (see exceptions)"
+   ],
+   "note": "page fetched as served on that day; dynamic parts of a web page change its checksum between fetches"
+  },
+  {
+   "file": "ecb.safeq202411.en.pdf",
+   "url": "https://www.ecb.europa.eu/stats/accesstofinancesofenterprises/pdf/questionnaire/ecb.safeq202411.en.pdf",
+   "read_on": "2026-11-18",
+   "sha256": "1b81ff488f44ae67fcc32d399340ec40899e25e816a8dac2c516f26aea6743db",
+   "bytes": 405973,
+   "quotes": [
+    "QA21 ... problems due to late payments from any private entities during the previous quarter and current quarter? ... Yes, regularly 1 / Yes, occasionally 2 / No 3 / [DK] 99",
+    "Q0b_g2 ... scale of 1-10 ... 3. Access to finance"
+   ],
+   "note": "page fetched as served on that day; dynamic parts of a web page change its checksum between fetches"
+  },
+  {
+   "file": "ecb.safeq202510.en.pdf",
+   "url": "https://www.ecb.europa.eu/stats/accesstofinancesofenterprises/pdf/questionnaire/ecb.safeq202510.en.pdf",
+   "read_on": "2026-11-18",
+   "sha256": "adc49c144a28040b61d2ad9702c7c85df4ad066c06fc56971bce9c4ff81ea5b0",
+   "bytes": 588298,
+   "quotes": [
+    "QA21: the same wording and codes as in 2024Q3 ([FILTER QA21 group2])"
+   ],
+   "note": "page fetched as served on that day; dynamic parts of a web page change its checksum between fetches"
+  },
+  {
+   "file": "ecb.safeq202610.en.pdf",
+   "url": "https://www.ecb.europa.eu/stats/accesstofinancesofenterprises/pdf/questionnaire/ecb.safeq202610.en.pdf",
+   "read_on": "2026-11-18",
+   "sha256": "b188234c31d59851543799ffb439beaf4b3bff51f1cf56c36ad52e5c13b9c606",
+   "bytes": 675250,
+   "quotes": [
+    "QA21: the same wording and codes ([Don't know] 99); the 2026Q3 report: the late-payment questions are identical to the Q3 2025 round",
+    "Q0b_g2 ... scale of 1-10 ... 3. Access to finance"
+   ],
+   "note": "page fetched as served on that day; dynamic parts of a web page change its checksum between fetches"
+  },
+  {
+   "file": "anthropic_retention.html",
+   "url": "https://privacy.anthropic.com/en/articles/7996866-how-long-do-you-store-my-organization-s-data",
+   "read_on": "2026-11-18",
+   "sha256": "7cf63f86fe23a69576a489698fa081d80c6d423dc5f2971c470c5087fc732b29",
+   "bytes": 107498,
+   "quotes": [
+    "July 1, 2026",
+    "For Anthropic API users, we automatically delete inputs and outputs on our backend within 30 days of receipt or generation, except: When you use a service with longer retention under your control (e.g. Files API) When you and we have agreed otherwise (e.g. zero data retention agreement ) If we need to retain them for longer to enforce our Usage Policy (UP) In compliance with the law"
+   ],
+   "note": "page fetched as served on that day"
+  }
+ ]
+}

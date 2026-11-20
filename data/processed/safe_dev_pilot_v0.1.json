@@ -1,0 +1,1032 @@
+{
+ "script": "safe_analyze 0.3",
+ "script_sha256": "c6a82aa53bc2bf44bca76f5e294ecc54a7c374503ccfe7d341320aff6bad1941",
+ "plan_sha256": "1031c464a7a8f2d3df0c21b5b078d1ca92b08d3b836102e778677d195c3a2367",
+ "conventions": "log score: higher is better; log-loss: its negative; d and 'minus': differences of log scores",
+ "build": {
+  "split": "dev",
+  "items_sha256": "0dda31c56a34b7eb32ea2c70dc5f5c1fc07b05cdf59e1f1a4578f912272f66aa",
+  "records": 120,
+  "items": 380,
+  "card_key_sha256": "70e286ce0f6484e31bce24cb101bcdcf615c52f236359f38fa8863af5e3d6e95",
+  "prompt_sha256": "92cf0f61f69d8ae4bc5ea030977308b82db4b4ec75d29ae480e5e219bb3ef531",
+  "target_answers_in_split": {
+   "7": 53,
+   "8": 94,
+   "3": 75,
+   "5": 163,
+   "2": 89,
+   "1": 275,
+   "6": 45,
+   "10": 96,
+   "99": 31,
+   "4": 59,
+   "9": 32
+  }
+ },
+ "source_sha256": "15fef1438998053d13765e34c72cdbae6ebe1ed24c3b53ebbf569eb279974f1d",
+ "audit_sha256": "4b01667acfc26f13dffe379117d4d6fd54c14e5551a1d7b23a4c8f810c97af98",
+ "firms": 120,
+ "answers_1_10": {
+  "1": 43,
+  "8": 10,
+  "5": 20,
+  "3": 11,
+  "7": 7,
+  "2": 10,
+  "10": 10,
+  "4": 6,
+  "6": 2,
+  "9": 1
+ },
+ "statistical": {
+  "training_records": 855,
+  "penalties": {
+   "logit": 0.03,
+   "logit_segment": 0.1,
+   "logit_without_applications": 0.03
+  },
+  "band_logloss": {
+   "marginal": 1.0216,
+   "rule": 1.0328,
+   "logit": 0.9356,
+   "logit_segment": 1.0239,
+   "logit_without_applications": 0.9637
+  },
+  "ten_logloss": {
+   "marginal": 1.9829,
+   "rule": 1.9914,
+   "logit": 1.9347,
+   "logit_segment": 1.9816,
+   "logit_without_applications": 1.9547
+  },
+  "rps": {
+   "marginal": 0.1878,
+   "rule": 0.1901,
+   "logit": 0.17,
+   "logit_segment": 0.1887,
+   "logit_without_applications": 0.1767
+  }
+ },
+ "models": {
+  "qwen": {
+   "model": "qwen3.8:27b",
+   "api": "ollama",
+   "technical_errors": {
+    "full": 2,
+    "segment": 34,
+    "shuffled": 3
+   },
+   "technical_error_outcomes": {
+    "invalid_format": 38,
+    "cut": 1
+   },
+   "technical_error_shares": {
+    "full": 0.0167,
+    "segment": 0.2833,
+    "shuffled": 0.025
+   },
+   "technical_error_flag": {
+    "over_threshold": true,
+    "threshold": 0.05,
+    "full_minus_segment": -0.2667,
+    "ci95": [
+     -0.35,
+     -0.1833
+    ]
+   },
+   "primary": {
+    "firms": 84,
+    "mean_d": 0.1,
+    "ci95": [
+     -0.0402,
+     0.2511
+    ],
+    "p": 0.20407959204079593,
+    "sensitivity": {
+     "errors_as_marginal": {
+      "firms": 120,
+      "mean_d": 0.0764,
+      "p": 0.33496650334966505
+     },
+     "errors_worst_symmetric": {
+      "firms": 120,
+      "mean_d": 1.3357,
+      "p": 9.999000099990002e-05
+     },
+     "errors_against_the_claim": {
+      "firms": 120,
+      "mean_d": 0.0032,
+      "p": 0.9717028297170283
+     },
+     "floor_0.001": {
+      "firms": 84,
+      "mean_d": 0.0904,
+      "note": "explanatory, no claim"
+     },
+     "floor_0.05": {
+      "firms": 84,
+      "mean_d": 0.121,
+      "note": "explanatory, no claim"
+     }
+    },
+    "mean_d_weighted_wgtcommon": 0.2153,
+    "weighted_note": "explanatory; SAFE weights are scaled within a wave, so in a development build (two waves) the weighted mean mixes two scales; in the test wave it does not"
+   },
+   "references": {
+    "full": {
+     "firms": 118,
+     "band_logloss": 1.0979,
+     "minus_marginal": -0.0806,
+     "minus_rule": -0.0694,
+     "minus_logit": -0.1664,
+     "minus_logit_segment": -0.0781,
+     "minus_logit_without_applications": -0.139
+    },
+    "segment": {
+     "firms": 86,
+     "band_logloss": 1.2421,
+     "minus_marginal": -0.2172,
+     "minus_rule": -0.1983,
+     "minus_logit": -0.2918,
+     "minus_logit_segment": -0.2146,
+     "minus_logit_without_applications": -0.2808
+    },
+    "shuffled": {
+     "firms": 117,
+     "band_logloss": 1.2403,
+     "minus_marginal": -0.2191,
+     "minus_rule": -0.2081,
+     "minus_logit": -0.3116,
+     "minus_logit_segment": -0.2175,
+     "minus_logit_without_applications": -0.2838
+    }
+   },
+   "ten_logloss": {
+    "full": 2.2561,
+    "segment": 2.4687
+   },
+   "rps": {
+    "full": 0.1775,
+    "segment": 0.1995
+   },
+   "full_minus_shuffled": {
+    "firms": 115,
+    "mean": 0.1445,
+    "ci95": [
+     -0.0391,
+     0.3156
+    ]
+   },
+   "floor_acts": {
+    "full": 0.0169,
+    "segment": 0.0,
+    "shuffled": 0.0427
+   },
+   "calibration": {
+    "full": {
+     "all": {
+      "1-3": {
+       "mean_predicted": 0.5828,
+       "observed": 0.5424
+      },
+      "4-7": {
+       "mean_predicted": 0.3798,
+       "observed": 0.2881
+      },
+      "8-10": {
+       "mean_predicted": 0.0373,
+       "observed": 0.1695
+      }
+     },
+     "1": {
+      "1-3": {
+       "mean_predicted": 0.7417,
+       "observed": 0.6552
+      },
+      "4-7": {
+       "mean_predicted": 0.243,
+       "observed": 0.1724
+      },
+      "8-10": {
+       "mean_predicted": 0.0153,
+       "observed": 0.1724
+      }
+     },
+     "2": {
+      "1-3": {
+       "mean_predicted": 0.6234,
+       "observed": 0.4333
+      },
+      "4-7": {
+       "mean_predicted": 0.3504,
+       "observed": 0.3667
+      },
+      "8-10": {
+       "mean_predicted": 0.0262,
+       "observed": 0.2
+      }
+     },
+     "3": {
+      "1-3": {
+       "mean_predicted": 0.4898,
+       "observed": 0.5
+      },
+      "4-7": {
+       "mean_predicted": 0.4437,
+       "observed": 0.3667
+      },
+      "8-10": {
+       "mean_predicted": 0.0666,
+       "observed": 0.1333
+      }
+     },
+     "4": {
+      "1-3": {
+       "mean_predicted": 0.4782,
+       "observed": 0.5862
+      },
+      "4-7": {
+       "mean_predicted": 0.4811,
+       "observed": 0.2414
+      },
+      "8-10": {
+       "mean_predicted": 0.0407,
+       "observed": 0.1724
+      }
+     }
+    },
+    "segment": {
+     "all": {
+      "1-3": {
+       "mean_predicted": 0.4284,
+       "observed": 0.5349
+      },
+      "4-7": {
+       "mean_predicted": 0.5263,
+       "observed": 0.2791
+      },
+      "8-10": {
+       "mean_predicted": 0.0454,
+       "observed": 0.186
+      }
+     },
+     "1": {
+      "1-3": {
+       "mean_predicted": 0.7188,
+       "observed": 0.6154
+      },
+      "4-7": {
+       "mean_predicted": 0.2523,
+       "observed": 0.1923
+      },
+      "8-10": {
+       "mean_predicted": 0.0289,
+       "observed": 0.1923
+      }
+     },
+     "2": {
+      "1-3": {
+       "mean_predicted": 0.3,
+       "observed": 0.3333
+      },
+      "4-7": {
+       "mean_predicted": 0.6475,
+       "observed": 0.3333
+      },
+      "8-10": {
+       "mean_predicted": 0.0525,
+       "observed": 0.3333
+      }
+     },
+     "3": {
+      "1-3": {
+       "mean_predicted": 0.3062,
+       "observed": 0.4583
+      },
+      "4-7": {
+       "mean_predicted": 0.6413,
+       "observed": 0.375
+      },
+      "8-10": {
+       "mean_predicted": 0.0525,
+       "observed": 0.1667
+      }
+     },
+     "4": {
+      "1-3": {
+       "mean_predicted": 0.3,
+       "observed": 0.5667
+      },
+      "4-7": {
+       "mean_predicted": 0.6475,
+       "observed": 0.2667
+      },
+      "8-10": {
+       "mean_predicted": 0.0525,
+       "observed": 0.1667
+      }
+     }
+    }
+   },
+   "by_size": {
+    "1": {
+     "firms": 25,
+     "mean_d": -0.0154,
+     "sd_d": 0.481,
+     "full_minus_marginal": -0.1185
+    },
+    "2": {
+     "firms": 6,
+     "mean_d": -0.5565,
+     "sd_d": 0.9063,
+     "full_minus_marginal": -0.9562
+    },
+    "3": {
+     "firms": 24,
+     "mean_d": 0.1429,
+     "sd_d": 0.9065,
+     "full_minus_marginal": -0.0073
+    },
+    "4": {
+     "firms": 29,
+     "mean_d": 0.2998,
+     "sd_d": 0.5393,
+     "full_minus_marginal": -0.0125
+    }
+   },
+   "precision": {
+    "sd_d_by_size": {
+     "1": 0.481,
+     "2": 0.9063,
+     "3": 0.9065,
+     "4": 0.5393
+    },
+    "sd_d_pooled_to_test_sizes": 0.7235,
+    "test_firms_assumed": 692,
+    "mde_80_alpha_0.05_over_3": 0.089,
+    "mde_80_alpha_0.05": 0.0771,
+    "note": "test firms from --test-firms; size shares of the test wave from the audit (no answers read)"
+   },
+   "stability": {
+    "pairs": 20,
+    "mean_abs_diff_of_probabilities": 0.001,
+    "mean_abs_diff_of_band_log_score": 0.0247,
+    "model_noise_variance_of_one_arm": 0.0061,
+    "share_of_var_d_from_model_noise": 0.0247,
+    "note": "local model at temperature 0 with a fixed seed: the repeat is the same request, stability is trivial"
+   }
+  },
+  "haiku": {
+   "model": "claude-haiku-5-5",
+   "api": "anthropic",
+   "technical_errors": {
+    "full": 3,
+    "segment": 0,
+    "shuffled": 2
+   },
+   "technical_error_outcomes": {
+    "invalid_format": 5
+   },
+   "technical_error_shares": {
+    "full": 0.025,
+    "segment": 0.0,
+    "shuffled": 0.0167
+   },
+   "technical_error_flag": {
+    "over_threshold": false,
+    "threshold": 0.05,
+    "full_minus_segment": 0.025,
+    "ci95": [
+     0.0,
+     0.0583
+    ]
+   },
+   "primary": {
+    "firms": 117,
+    "mean_d": 0.1672,
+    "ci95": [
+     0.0496,
+     0.2786
+    ],
+    "p": 0.0028997100289971,
+    "sensitivity": {
+     "errors_as_marginal": {
+      "firms": 120,
+      "mean_d": 0.1597,
+      "p": 0.0044995500449955
+     },
+     "errors_worst_symmetric": {
+      "firms": 120,
+      "mean_d": 0.0446,
+      "p": 0.6238376162383762
+     },
+     "errors_against_the_claim": {
+      "firms": 120,
+      "mean_d": 0.0446,
+      "p": 0.6238376162383762
+     },
+     "floor_0.001": {
+      "firms": 117,
+      "mean_d": 0.1671,
+      "note": "explanatory, no claim"
+     },
+     "floor_0.05": {
+      "firms": 117,
+      "mean_d": 0.1668,
+      "note": "explanatory, no claim"
+     }
+    },
+    "mean_d_weighted_wgtcommon": 0.2007,
+    "weighted_note": "explanatory; SAFE weights are scaled within a wave, so in a development build (two waves) the weighted mean mixes two scales; in the test wave it does not"
+   },
+   "references": {
+    "full": {
+     "firms": 117,
+     "band_logloss": 1.0105,
+     "minus_marginal": 0.0113,
+     "minus_rule": 0.0226,
+     "minus_logit": -0.0774,
+     "minus_logit_segment": 0.0138,
+     "minus_logit_without_applications": -0.0503
+    },
+    "segment": {
+     "firms": 120,
+     "band_logloss": 1.1703,
+     "minus_marginal": -0.1487,
+     "minus_rule": -0.1375,
+     "minus_logit": -0.2347,
+     "minus_logit_segment": -0.1464,
+     "minus_logit_without_applications": -0.2066
+    },
+    "shuffled": {
+     "firms": 118,
+     "band_logloss": 1.1321,
+     "minus_marginal": -0.1074,
+     "minus_rule": -0.0969,
+     "minus_logit": -0.1931,
+     "minus_logit_segment": -0.1059,
+     "minus_logit_without_applications": -0.1663
+    }
+   },
+   "ten_logloss": {
+    "full": 2.1643,
+    "segment": 2.3367
+   },
+   "rps": {
+    "full": 0.1883,
+    "segment": 0.2261
+   },
+   "full_minus_shuffled": {
+    "firms": 115,
+    "mean": 0.1212,
+    "ci95": [
+     -0.004,
+     0.2452
+    ]
+   },
+   "floor_acts": {
+    "full": 0.0,
+    "segment": 0.0,
+    "shuffled": 0.0
+   },
+   "calibration": {
+    "full": {
+     "all": {
+      "1-3": {
+       "mean_predicted": 0.4475,
+       "observed": 0.5385
+      },
+      "4-7": {
+       "mean_predicted": 0.3858,
+       "observed": 0.2821
+      },
+      "8-10": {
+       "mean_predicted": 0.1667,
+       "observed": 0.1795
+      }
+     },
+     "1": {
+      "1-3": {
+       "mean_predicted": 0.4937,
+       "observed": 0.6333
+      },
+      "4-7": {
+       "mean_predicted": 0.353,
+       "observed": 0.1667
+      },
+      "8-10": {
+       "mean_predicted": 0.1533,
+       "observed": 0.2
+      }
+     },
+     "2": {
+      "1-3": {
+       "mean_predicted": 0.4511,
+       "observed": 0.4483
+      },
+      "4-7": {
+       "mean_predicted": 0.3886,
+       "observed": 0.3448
+      },
+      "8-10": {
+       "mean_predicted": 0.1603,
+       "observed": 0.2069
+      }
+     },
+     "3": {
+      "1-3": {
+       "mean_predicted": 0.4229,
+       "observed": 0.5172
+      },
+      "4-7": {
+       "mean_predicted": 0.4113,
+       "observed": 0.3448
+      },
+      "8-10": {
+       "mean_predicted": 0.1658,
+       "observed": 0.1379
+      }
+     },
+     "4": {
+      "1-3": {
+       "mean_predicted": 0.4207,
+       "observed": 0.5517
+      },
+      "4-7": {
+       "mean_predicted": 0.3915,
+       "observed": 0.2759
+      },
+      "8-10": {
+       "mean_predicted": 0.1879,
+       "observed": 0.1724
+      }
+     }
+    },
+    "segment": {
+     "all": {
+      "1-3": {
+       "mean_predicted": 0.2624,
+       "observed": 0.5333
+      },
+      "4-7": {
+       "mean_predicted": 0.4798,
+       "observed": 0.2917
+      },
+      "8-10": {
+       "mean_predicted": 0.2578,
+       "observed": 0.175
+      }
+     },
+     "1": {
+      "1-3": {
+       "mean_predicted": 0.2827,
+       "observed": 0.6333
+      },
+      "4-7": {
+       "mean_predicted": 0.4593,
+       "observed": 0.1667
+      },
+      "8-10": {
+       "mean_predicted": 0.258,
+       "observed": 0.2
+      }
+     },
+     "2": {
+      "1-3": {
+       "mean_predicted": 0.2482,
+       "observed": 0.4333
+      },
+      "4-7": {
+       "mean_predicted": 0.4898,
+       "observed": 0.3667
+      },
+      "8-10": {
+       "mean_predicted": 0.262,
+       "observed": 0.2
+      }
+     },
+     "3": {
+      "1-3": {
+       "mean_predicted": 0.2628,
+       "observed": 0.5
+      },
+      "4-7": {
+       "mean_predicted": 0.4865,
+       "observed": 0.3667
+      },
+      "8-10": {
+       "mean_predicted": 0.2507,
+       "observed": 0.1333
+      }
+     },
+     "4": {
+      "1-3": {
+       "mean_predicted": 0.2559,
+       "observed": 0.5667
+      },
+      "4-7": {
+       "mean_predicted": 0.4835,
+       "observed": 0.2667
+      },
+      "8-10": {
+       "mean_predicted": 0.2606,
+       "observed": 0.1667
+      }
+     }
+    }
+   },
+   "by_size": {
+    "1": {
+     "firms": 30,
+     "mean_d": 0.2438,
+     "sd_d": 0.5469,
+     "full_minus_marginal": 0.0194
+    },
+    "2": {
+     "firms": 29,
+     "mean_d": 0.162,
+     "sd_d": 0.6381,
+     "full_minus_marginal": 0.0906
+    },
+    "3": {
+     "firms": 29,
+     "mean_d": 0.0321,
+     "sd_d": 0.6901,
+     "full_minus_marginal": -0.0941
+    },
+    "4": {
+     "firms": 29,
+     "mean_d": 0.2283,
+     "sd_d": 0.5543,
+     "full_minus_marginal": 0.0289
+    }
+   },
+   "precision": {
+    "sd_d_by_size": {
+     "1": 0.5469,
+     "2": 0.6381,
+     "3": 0.6901,
+     "4": 0.5543
+    },
+    "sd_d_pooled_to_test_sizes": 0.6097,
+    "test_firms_assumed": 692,
+    "mde_80_alpha_0.05_over_3": 0.075,
+    "mde_80_alpha_0.05": 0.0649,
+    "note": "test firms from --test-firms; size shares of the test wave from the audit (no answers read)"
+   },
+   "stability": {
+    "pairs": 19,
+    "mean_abs_diff_of_probabilities": 0.0257,
+    "mean_abs_diff_of_band_log_score": 0.2635,
+    "model_noise_variance_of_one_arm": 0.071,
+    "share_of_var_d_from_model_noise": 0.3845
+   }
+  },
+  "luna": {
+   "model": "gpt-6-luna",
+   "api": "openai-responses",
+   "technical_errors": {
+    "full": 0,
+    "segment": 0,
+    "shuffled": 0
+   },
+   "technical_error_outcomes": {},
+   "technical_error_shares": {
+    "full": 0.0,
+    "segment": 0.0,
+    "shuffled": 0.0
+   },
+   "technical_error_flag": {
+    "over_threshold": false,
+    "threshold": 0.05,
+    "full_minus_segment": 0.0,
+    "ci95": [
+     0.0,
+     0.0
+    ]
+   },
+   "primary": {
+    "firms": 120,
+    "mean_d": 0.0668,
+    "ci95": [
+     -0.0201,
+     0.1438
+    ],
+    "p": 0.11838816118388161,
+    "sensitivity": {
+     "errors_as_marginal": {
+      "firms": 120,
+      "mean_d": 0.0668,
+      "p": 0.11838816118388161
+     },
+     "errors_worst_symmetric": {
+      "firms": 120,
+      "mean_d": 0.0668,
+      "p": 0.11838816118388161
+     },
+     "errors_against_the_claim": {
+      "firms": 120,
+      "mean_d": 0.0668,
+      "p": 0.11838816118388161
+     },
+     "floor_0.001": {
+      "firms": 120,
+      "mean_d": 0.0657,
+      "note": "explanatory, no claim"
+     },
+     "floor_0.05": {
+      "firms": 120,
+      "mean_d": 0.07,
+      "note": "explanatory, no claim"
+     }
+    },
+    "mean_d_weighted_wgtcommon": 0.1514,
+    "weighted_note": "explanatory; SAFE weights are scaled within a wave, so in a development build (two waves) the weighted mean mixes two scales; in the test wave it does not"
+   },
+   "references": {
+    "full": {
+     "firms": 120,
+     "band_logloss": 0.9989,
+     "minus_marginal": 0.0227,
+     "minus_rule": 0.0339,
+     "minus_logit": -0.0633,
+     "minus_logit_segment": 0.025,
+     "minus_logit_without_applications": -0.0352
+    },
+    "segment": {
+     "firms": 120,
+     "band_logloss": 1.0656,
+     "minus_marginal": -0.044,
+     "minus_rule": -0.0329,
+     "minus_logit": -0.13,
+     "minus_logit_segment": -0.0417,
+     "minus_logit_without_applications": -0.102
+    },
+    "shuffled": {
+     "firms": 120,
+     "band_logloss": 1.1191,
+     "minus_marginal": -0.0975,
+     "minus_rule": -0.0863,
+     "minus_logit": -0.1835,
+     "minus_logit_segment": -0.0952,
+     "minus_logit_without_applications": -0.1554
+    }
+   },
+   "ten_logloss": {
+    "full": 2.2541,
+    "segment": 2.2661
+   },
+   "rps": {
+    "full": 0.1793,
+    "segment": 0.1919
+   },
+   "full_minus_shuffled": {
+    "firms": 120,
+    "mean": 0.1202,
+    "ci95": [
+     -0.0113,
+     0.2406
+    ]
+   },
+   "floor_acts": {
+    "full": 0.0,
+    "segment": 0.0,
+    "shuffled": 0.0
+   },
+   "calibration": {
+    "full": {
+     "all": {
+      "1-3": {
+       "mean_predicted": 0.4601,
+       "observed": 0.5333
+      },
+      "4-7": {
+       "mean_predicted": 0.4544,
+       "observed": 0.2917
+      },
+      "8-10": {
+       "mean_predicted": 0.0856,
+       "observed": 0.175
+      }
+     },
+     "1": {
+      "1-3": {
+       "mean_predicted": 0.5491,
+       "observed": 0.6333
+      },
+      "4-7": {
+       "mean_predicted": 0.3906,
+       "observed": 0.1667
+      },
+      "8-10": {
+       "mean_predicted": 0.0603,
+       "observed": 0.2
+      }
+     },
+     "2": {
+      "1-3": {
+       "mean_predicted": 0.4414,
+       "observed": 0.4333
+      },
+      "4-7": {
+       "mean_predicted": 0.4762,
+       "observed": 0.3667
+      },
+      "8-10": {
+       "mean_predicted": 0.0824,
+       "observed": 0.2
+      }
+     },
+     "3": {
+      "1-3": {
+       "mean_predicted": 0.4214,
+       "observed": 0.5
+      },
+      "4-7": {
+       "mean_predicted": 0.4759,
+       "observed": 0.3667
+      },
+      "8-10": {
+       "mean_predicted": 0.1027,
+       "observed": 0.1333
+      }
+     },
+     "4": {
+      "1-3": {
+       "mean_predicted": 0.4282,
+       "observed": 0.5667
+      },
+      "4-7": {
+       "mean_predicted": 0.4747,
+       "observed": 0.2667
+      },
+      "8-10": {
+       "mean_predicted": 0.0971,
+       "observed": 0.1667
+      }
+     }
+    },
+    "segment": {
+     "all": {
+      "1-3": {
+       "mean_predicted": 0.4871,
+       "observed": 0.5333
+      },
+      "4-7": {
+       "mean_predicted": 0.4254,
+       "observed": 0.2917
+      },
+      "8-10": {
+       "mean_predicted": 0.0875,
+       "observed": 0.175
+      }
+     },
+     "1": {
+      "1-3": {
+       "mean_predicted": 0.5686,
+       "observed": 0.6333
+      },
+      "4-7": {
+       "mean_predicted": 0.3589,
+       "observed": 0.1667
+      },
+      "8-10": {
+       "mean_predicted": 0.0725,
+       "observed": 0.2
+      }
+     },
+     "2": {
+      "1-3": {
+       "mean_predicted": 0.5007,
+       "observed": 0.4333
+      },
+      "4-7": {
+       "mean_predicted": 0.4141,
+       "observed": 0.3667
+      },
+      "8-10": {
+       "mean_predicted": 0.0852,
+       "observed": 0.2
+      }
+     },
+     "3": {
+      "1-3": {
+       "mean_predicted": 0.4396,
+       "observed": 0.5
+      },
+      "4-7": {
+       "mean_predicted": 0.4698,
+       "observed": 0.3667
+      },
+      "8-10": {
+       "mean_predicted": 0.0906,
+       "observed": 0.1333
+      }
+     },
+     "4": {
+      "1-3": {
+       "mean_predicted": 0.4396,
+       "observed": 0.5667
+      },
+      "4-7": {
+       "mean_predicted": 0.4587,
+       "observed": 0.2667
+      },
+      "8-10": {
+       "mean_predicted": 0.1017,
+       "observed": 0.1667
+      }
+     }
+    }
+   },
+   "by_size": {
+    "1": {
+     "firms": 30,
+     "mean_d": 0.0784,
+     "sd_d": 0.3526,
+     "full_minus_marginal": 0.025
+    },
+    "2": {
+     "firms": 30,
+     "mean_d": -0.0258,
+     "sd_d": 0.4788,
+     "full_minus_marginal": -0.1061
+    },
+    "3": {
+     "firms": 30,
+     "mean_d": 0.0461,
+     "sd_d": 0.5183,
+     "full_minus_marginal": 0.0636
+    },
+    "4": {
+     "firms": 30,
+     "mean_d": 0.1683,
+     "sd_d": 0.487,
+     "full_minus_marginal": 0.1083
+    }
+   },
+   "precision": {
+    "sd_d_by_size": {
+     "1": 0.3526,
+     "2": 0.4788,
+     "3": 0.5183,
+     "4": 0.487
+    },
+    "sd_d_pooled_to_test_sizes": 0.443,
+    "test_firms_assumed": 692,
+    "mde_80_alpha_0.05_over_3": 0.0545,
+    "mde_80_alpha_0.05": 0.0472,
+    "note": "test firms from --test-firms; size shares of the test wave from the audit (no answers read)"
+   },
+   "stability": {
+    "pairs": 20,
+    "mean_abs_diff_of_probabilities": 0.0178,
+    "mean_abs_diff_of_band_log_score": 0.1943,
+    "model_noise_variance_of_one_arm": 0.0399,
+    "share_of_var_d_from_model_noise": 0.3722
+   }
+  }
+ },
+ "primary_family": {
+  "comparisons": "full vs segment per model",
+  "family_size": 3,
+  "models_missing_from_this_report": 0,
+  "p": {
+   "qwen": 0.20407959204079593,
+   "haiku": 0.0028997100289971,
+   "luna": 0.11838816118388161
+  },
+  "holm_rejected": {
+   "haiku": true,
+   "luna": false,
+   "qwen": false
+  },
+  "supports_claim": {
+   "qwen": false,
+   "haiku": true,
+   "luna": false
+  },
+  "alpha": 0.05,
+  "scope": "a rejection with mean d > 0 supports the claim for that model only"
+ },
+ "secondary_gated_full_vs_shuffled": {
+  "models_tested": [
+   "haiku"
+  ],
+  "p": {
+   "haiku": 0.062193780621937804
+  },
+  "holm_rejected": {
+   "haiku": false
+  },
+  "supports_information_about_this_firm": {
+   "haiku": false
+  },
+  "rule": "tested only for models whose primary comparison supports the claim; Holm among them; d > 0"
+ },
+ "fits": {
+  "total": 75,
+  "failed": 0
+ }
+}

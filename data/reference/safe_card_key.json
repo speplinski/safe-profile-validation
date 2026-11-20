@@ -1,0 +1,300 @@
+{
+ "version": "0.6-draft",
+ "status": "draft after the fourth blind-agent round (counts prompt, 18.11.2026); not frozen",
+ "what": "how a SAFE public use file record becomes the card an agent sees (SAFE validation, docs/walidacja-safe.md): fields, code labels and the agent-visible key",
+ "sources": {
+  "questionnaires": "data/reference/sources/2026-11-18-safe-terms/ecb.safeq202411.en.pdf, ecb.safeq202510.en.pdf, ecb.safeq202610.en.pdf (Q3 rounds 2024-2026)",
+  "guide": "data/reference/sources/2026-11-12-safe/ecb.safemi.en.pdf (Table A2 for d3_rec; section 6.1 on disclosure control)",
+  "q4_rec_coding": "q4_*_rec: 1 = relevant and used in the period (Q4a yes), 2 = relevant, not used (Q4a no), 99 = relevant, Q4a don't know, 7 = not relevant, 9 = Q4 don't know; checked on the data (q4_c: Q4 code 3 = 365 = 235 + 128 + 2)"
+ },
+ "translation_note": "the Polish wording of the card, the key and the question is our translation of the English questionnaire (Z); SAFE interviews in Poland used a Polish questionnaire that is not in the public files; the address form is neutral ('dla firmy') because SAFE has CATI and CAWI interviews (domain round M5)",
+ "not_on_the_card": [
+  "permid",
+  "ida",
+  "wave",
+  "weights",
+  "the year of the period",
+  "any perception of the same interview (q0b, q2, q11, q16, q17, q19)",
+  "the follow-ups of late payments (qa3, qa4)",
+  "q4_g_rec (a derived column, equal to leasing or factoring (q4_m_rec, q4_r_rec) in all 1,800 records of 2024-2026; not an item of these questionnaires)",
+  "the source of the data"
+ ],
+ "fields": [
+  {
+   "id": "size_class",
+   "safe": "d1_rec",
+   "label": "Liczba zatrudnionych (pełny albo niepełny etat, co najmniej 12 godzin tygodniowo)",
+   "values": {
+    "1": "od 1 do 9",
+    "2": "od 10 do 49",
+    "3": "od 50 do 249",
+    "4": "250 lub więcej"
+   },
+   "en": {
+    "1": "from 1 employee to 9 employees",
+    "2": "from 10 employees to 49 employees",
+    "3": "from 50 employees to 249 employees",
+    "4": "250 employees or more"
+   },
+   "block": "segment"
+  },
+  {
+   "id": "sector",
+   "safe": "d3_rec",
+   "label": "Główna działalność (cztery grupy)",
+   "values": {
+    "1": "przemysł",
+    "2": "budownictwo",
+    "3": "handel hurtowy albo detaliczny",
+    "4": "usługi",
+    "9": "nie podano"
+   },
+   "en": {
+    "1": "Industry",
+    "2": "Construction",
+    "3": "Trade",
+    "4": "Services",
+    "9": "[set as missing] (large enterprises, disclosure control)"
+   },
+   "block": "segment"
+  },
+  {
+   "id": "turnover",
+   "safe": "d4",
+   "label": "Roczny obrót w ostatnim pełnym roku",
+   "values": {
+    "5": "do 500 tys. euro",
+    "6": "ponad 500 tys. do 1 mln euro",
+    "7": "ponad 1 mln do 2 mln euro",
+    "2": "ponad 2 mln do 10 mln euro",
+    "3": "ponad 10 mln do 50 mln euro",
+    "4": "ponad 50 mln euro",
+    "9": "nieznany (firma nie podała)"
+   },
+   "en": {
+    "5": "up to €500,000",
+    "6": "more than €500,000 and up to €1 million",
+    "7": "more than €1 million and up to €2 million",
+    "2": "more than €2 million and up to €10 million",
+    "3": "more than €10 million and up to €50 million",
+    "4": "more than €50 million",
+    "9": "[Don't know/Not applicable]"
+   },
+   "block": "other"
+  },
+  {
+   "id": "firm_age",
+   "safe": "d5_rec",
+   "label": "Wiek firmy",
+   "values": {
+    "1": "10 lat lub więcej",
+    "2": "od 5 do mniej niż 10 lat",
+    "3": "od 2 do mniej niż 5 lat",
+    "4": "mniej niż 2 lata",
+    "9": "nieznany (firma nie podała)"
+   },
+   "en": {
+    "1": "10 years or more",
+    "2": "5 years or more, but less than 10 years",
+    "3": "2 years or more, but less than 5 years",
+    "4": "less than 2 years",
+    "9": "[Don't know/Not applicable]"
+   },
+   "block": "other"
+  },
+  {
+   "id": "ownership",
+   "safe": "d6",
+   "label": "Kto ma największy udział w firmie",
+   "values": {
+    "5": "jeden właściciel, osoba fizyczna",
+    "2": "rodzina albo przedsiębiorcy (więcej niż jeden właściciel)",
+    "3": "inne przedsiębiorstwa albo partnerzy biznesowi",
+    "1": "akcjonariusze publiczni (spółka notowana na giełdzie)",
+    "4": "fundusze venture capital albo anioły biznesu",
+    "7": "inny (struktura spoza tej listy)",
+    "9": "nieznany (firma nie podała)"
+   },
+   "en": {
+    "5": "one owner only, that is yourself or another natural person",
+    "2": "family or entrepreneurs [more than one owner]",
+    "3": "other enterprises or business associates",
+    "1": "public shareholders, as your enterprise is listed on the stock market",
+    "4": "venture capital enterprises or business angels",
+    "7": "other",
+    "9": "[Don't know/Not applicable]"
+   },
+   "block": "other"
+  },
+  {
+   "id": "export_share",
+   "safe": "d7_rec",
+   "label": "Udział eksportu w obrocie w ostatnim roku",
+   "values": {
+    "1": "0% (bez eksportu)",
+    "2": "więcej niż 0% i mniej niż 25%",
+    "3": "od 25% do 50%",
+    "4": "ponad 50%",
+    "9": "nieznany (firma nie podała)"
+   },
+   "en": {
+    "1": "0% – my enterprise did not export any goods and services last year",
+    "2": "less than 25%",
+    "3": "between 25% and 50%",
+    "4": "more than 50%",
+    "9": "[Don't know/Not applicable]"
+   },
+   "block": "other"
+  }
+ ],
+ "sources_of_financing": {
+  "intro": "Źródła finansowania. Dla każdego: czy wchodzi w grę dla firmy (firma korzystała z niego w przeszłości albo rozważa korzystanie w przyszłości), a jeśli tak, czy firma skorzystała z niego w poprzednim i bieżącym kwartale",
+  "block": "other",
+  "items": [
+   {
+    "safe": "q4_a_rec",
+    "label": "zyski zatrzymane albo sprzedaż aktywów",
+    "used": "firma zatrzymała zyski albo sprzedała aktywa"
+   },
+   {
+    "safe": "q4_b_rec",
+    "label": "dotacje albo dotowane kredyty bankowe",
+    "used": "firma uzyskała nowe finansowanie tego rodzaju"
+   },
+   {
+    "safe": "q4_c_rec",
+    "label": "linia kredytowa, kredyt w rachunku albo zadłużenie na karcie kredytowej",
+    "used": "firma korzystała z takiego kredytu"
+   },
+   {
+    "safe": "q4_d_rec",
+    "label": "kredyt bankowy (bez dotowanych, bez kredytu w rachunku i linii kredytowych)",
+    "used": "firma zaciągnęła albo odnowiła kredyt"
+   },
+   {
+    "safe": "q4_e_rec",
+    "label": "kredyt kupiecki (zapłata dostawcom w uzgodnionym późniejszym terminie, zwykle 30, 60 albo 90 dni po dostawie)",
+    "used": "firma uzyskała kredyt kupiecki od dostawców"
+   },
+   {
+    "safe": "q4_f_rec",
+    "label": "inna pożyczka (np. od rodziny i znajomych, powiązanej firmy albo udziałowców; bez kredytu kupieckiego)",
+    "used": "firma zaciągnęła albo odnowiła taką pożyczkę"
+   },
+   {
+    "safe": "q4_h_rec",
+    "label": "emisja dłużnych papierów wartościowych",
+    "used": "firma wyemitowała dłużne papiery wartościowe"
+   },
+   {
+    "safe": "q4_j_rec",
+    "label": "kapitał własny (sprzedaż udziałów albo akcji)",
+    "used": "firma wyemitowała udziały albo akcje"
+   },
+   {
+    "safe": "q4_m_rec",
+    "label": "leasing albo zakup na raty",
+    "used": "firma uzyskała nowe finansowanie tego rodzaju"
+   },
+   {
+    "safe": "q4_p_rec",
+    "label": "inne źródła (np. dług podporządkowany, pożyczki partycypacyjne, pożyczki społecznościowe, crowdfunding)",
+    "used": "firma uzyskała takie finansowanie"
+   },
+   {
+    "safe": "q4_r_rec",
+    "label": "faktoring",
+    "used": "firma korzystała z faktoringu"
+   }
+  ],
+  "codes": {
+   "1": "wchodzi w grę; w poprzednim i bieżącym kwartale: tak ({used})",
+   "2": "wchodzi w grę; w poprzednim i bieżącym kwartale: nie",
+   "99": "wchodzi w grę; czy skorzystała w poprzednim i bieżącym kwartale: firma nie wie",
+   "7": "nie wchodzi w grę",
+   "9": "firma nie wie, czy wchodzi w grę"
+  },
+  "missing": "line omitted (the source was not asked: filters by the reference-period group)"
+ },
+ "applications": {
+  "intro": "Wnioski o finansowanie w poprzednim i bieżącym kwartale (także o odnowienie umowy, jeśli wymagało wniosku)",
+  "block": "other",
+  "items": [
+   {
+    "safe": "q7a_d_rec",
+    "outcome": "q7b_d_rec",
+    "label": "linia kredytowa, kredyt w rachunku albo zadłużenie na karcie kredytowej"
+   },
+   {
+    "safe": "q7a_a_rec",
+    "outcome": "q7b_a_rec",
+    "label": "kredyt bankowy, także dotowany (bez kredytu w rachunku i linii kredytowych)"
+   },
+   {
+    "safe": "q7a_b_rec",
+    "outcome": "q7b_b_rec",
+    "label": "kredyt kupiecki"
+   },
+   {
+    "safe": "q7a_c_rec",
+    "outcome": "q7b_c_rec",
+    "label": "inne finansowanie zewnętrzne (pożyczki od rodziny, znajomych, powiązanej firmy albo udziałowców, leasing, faktoring, dług podporządkowany, pożyczki partycypacyjne, pożyczki społecznościowe, crowdfunding, emisja akcji albo obligacji)"
+   }
+  ],
+  "codes": {
+   "1": "firma złożyła wniosek",
+   "2": "nie złożyła wniosku z obawy przed odmową",
+   "3": "nie złożyła wniosku, bo miała wystarczające środki własne",
+   "4": "nie złożyła wniosku z innych powodów (innych niż obawa przed odmową i wystarczające środki własne; jakich, nie wiadomo)",
+   "9": "firma nie wie, czy złożyła wniosek"
+  },
+  "outcome_codes": {
+   "1": "otrzymała całą kwotę",
+   "5": "otrzymała od 75% do mniej niż 100% kwoty",
+   "6": "otrzymała część kwoty, mniej niż 75%",
+   "3": "zrezygnowała, bo koszt był zbyt wysoki",
+   "4": "wniosek odrzucono",
+   "8": "wniosek jest jeszcze rozpatrywany",
+   "9": "firma nie zna wyniku"
+  },
+  "missing": "line omitted when not asked: by the questionnaire's filter, (a) bank loan is asked when bank loans or grants/subsidised loans are relevant, (b) trade credit when trade credit is relevant, (c) other external financing when any of f, h, j, m, r, p is relevant, (d) credit line when credit lines are relevant; 'don't know' on relevance (code 9) also leaves the line out",
+  "translation_note": "the questionnaire's text of (c) also names grants, but its filter does not include grants (b): we leave grants out of the label so the card does not contradict itself (Z, a deviation from the read-out text)",
+  "none_asked": "o żaden wniosek nie pytano (o wnioski pyta się tylko przy źródłach zewnętrznych, które wchodzą w grę dla firmy)"
+ },
+ "agent_key": [
+  "Karta pełna ma cztery części: wielkość i branżę, kilka cech firmy, źródła finansowania i wnioski o finansowanie. Niektóre karty podają tylko wielkość i branżę; wtedy pozostałych informacji nie znasz i nie wnioskujesz z ich braku niczego o firmie.",
+  "W części o źródłach finansowania wymienione są źródła, o które firmę pytano. W części o wnioskach jest linia tylko o tych rodzajach finansowania, o które firmę pytano: o wniosek o linię kredytową, gdy w grę wchodzi linia kredytowa; o kredyt bankowy, gdy w grę wchodzi kredyt bankowy albo dotacje lub dotowane kredyty (o wniosek o same dotacje nie pytano); o kredyt kupiecki, gdy w grę wchodzi kredyt kupiecki; o inne finansowanie zewnętrzne, gdy w grę wchodzi którekolwiek z pozostałych źródeł zewnętrznych (inna pożyczka, dłużne papiery wartościowe, kapitał własny, leasing, faktoring, inne źródła). Gdy firma nie wie, czy źródło wchodzi w grę, o wniosek przy nim nie pytano. Linia o innym finansowaniu zewnętrznym jest jedną odpowiedzią dla całej tej grupy źródeł; nie wiadomo, którego źródła z grupy dotyczył wniosek. Brak linii wniosku oznacza, że o ten wniosek nie pytano; nie oznacza zera.",
+  "Skorzystanie ze źródła w tym okresie i złożenie wniosku to osobne pytania. Firma mogła korzystać z umowy zawartej wcześniej albo z finansowania, o które nie składa się wniosku (np. kredyt kupiecki od dostawcy). Zestawienie „skorzystała”, „zaciągnęła albo odnowiła” albo „uzyskała nowe finansowanie” z „nie złożyła wniosku” nie jest sprzecznością (np. odnowienie automatyczne, uruchomienie wcześniej przyznanego limitu, leasing zawarty u sprzedawcy). „Wystarczające środki własne” oznacza, że firma nie potrzebowała tego finansowania dzięki własnej gotówce albo innym własnym środkom. „Z obawy przed odmową” oznacza, że firma nie złożyła wniosku, bo spodziewała się, że zostanie odrzucony. Różne sformułowania „tak” przy źródłach powtarzają brzmienie pytania o dane źródło. Wniosek o kredyt kupiecki to prośba do dostawcy o zapłatę w odroczonym terminie.",
+  "„Wchodzi w grę”: firma korzystała z tego źródła w przeszłości albo rozważa korzystanie w przyszłości. „Nie wchodzi w grę”: firma ani nie korzystała, ani nie rozważa (to mówi o potrzebach i zamiarach firmy, nie o tym, czy ktoś by jej finansowania udzielił; przy zyskach zatrzymanych albo sprzedaży aktywów nie mówi, czy firma ma zyski albo aktywa do sprzedania, tylko że tak się nie finansowała i tego nie rozważa). „Firma nie wie” w każdej części oznacza, że osoba z firmy nie umiała odpowiedzieć; to nie znaczy „nie”.",
+  "Wynik wniosku, od najlepszego do najgorszego dla firmy: otrzymała całą kwotę; otrzymała od 75% do mniej niż 100% kwoty; otrzymała część kwoty, mniej niż 75%; zrezygnowała, bo koszt był zbyt wysoki (nie przyjęła finansowania); wniosek odrzucono. Osobno: wniosek jest jeszcze rozpatrywany; firma nie zna wyniku. Wynik dotyczy tylko wniosków złożonych w tym okresie.",
+  "„Poprzedni i bieżący kwartał” to razem około sześciu miesięcy przed rozmową, ten sam okres co w pytaniu. Obrót i eksport dotyczą ostatniego pełnego roku.",
+  "Obrót roczny podano w przedziałach w euro; firma jest w Polsce. Branża jest w czterech grupach: przemysł (z górnictwem), budownictwo, handel (hurtowy albo detaliczny), usługi (także transport i nieruchomości); u firm od 250 zatrudnionych nie jest podana.",
+  "Kto ma największy udział w firmie: jedna z kategorii: jeden właściciel, osoba fizyczna; rodzina albo przedsiębiorcy (więcej niż jeden właściciel); inne przedsiębiorstwa albo partnerzy biznesowi; akcjonariusze publiczni (spółka notowana na giełdzie); fundusze venture capital albo anioły biznesu; inny (struktura spoza tej listy); nieznany (firma nie podała).",
+  "„Kapitał własny” w pytaniu i na karcie to pozyskanie kapitału przez sprzedaż udziałów albo akcji; zyski zatrzymane to osobne źródło, wewnętrzne.",
+  "Informacje na karcie to odpowiedzi osoby z firmy; mogą się zdarzyć rzadkie zestawienia (np. liczba zatrudnionych niedopasowana do obrotu). Traktuj je jako prawdziwe.",
+  "„Nieznany (firma nie podała)” przy cechach firmy oznacza brak odpowiedzi; nie wnioskujesz z niego niczego o firmie."
+ ],
+ "question": {
+  "safe": "q0b_3",
+  "en": "Q0b_g2. How important have the following problems been for your enterprise during the previous quarter and current quarter? Please answer on a scale of 1-10, where 1 means it is not at all important and 10 means it is extremely important. 3. Access to finance [READ IF NECESSARY: Financing of your business – bank loans, trade credit, equity, debt securities, other external financing]",
+  "pl": "Jak ważnym problemem był dla firmy w poprzednim i bieżącym kwartale dostęp do finansowania (finansowanie działalności firmy: kredyty bankowe, kredyt kupiecki, kapitał własny, dłużne papiery wartościowe, inne finansowanie zewnętrzne)? Skala od 1 do 10: 1 – wcale nie był ważnym problemem, 10 – był niezwykle ważnym problemem.",
+  "scale": [
+   "1",
+   "2",
+   "3",
+   "4",
+   "5",
+   "6",
+   "7",
+   "8",
+   "9",
+   "10"
+  ],
+  "excluded_answers": {
+   "99": "don't know / not applicable: left out of the main score, counted"
+  },
+  "battery_pl": "W tym samym pytaniu ankiety oceniasz osobno, na tej samej skali, sześć wymienionych problemów: znalezienie klientów, konkurencję, dostęp do finansowania, koszty produkcji albo pracy, dostępność wykwalifikowanych pracowników albo doświadczonych menedżerów oraz regulacje (i ewentualnie inny problem, jeśli firma taki wskaże). Każdy problem ocenia się osobno, na całej skali, bez porównywania z pozostałymi; listę podajemy tylko jako kontekst. Tu podajesz ocenę tylko dla dostępu do finansowania.",
+  "battery_note": "the Q0b battery has six named items and 'Other, please specify'; named without answers (decision of the project lead pending, domain round M2)"
+ },
+ "segment_note": "Pozostałe cechy firmy (obrót, wiek, własność, eksport, źródła finansowania, wnioski): nie podano na tej karcie."
+}

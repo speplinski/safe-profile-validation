@@ -1,0 +1,203 @@
+{
+ "script": "safe_assumption_check 0.1",
+ "audit_sha256": "4b01667acfc26f13dffe379117d4d6fd54c14e5551a1d7b23a4c8f810c97af98",
+ "profiles_sha256": "71bd46d05270e1f222cdfba5abd6ac4d7866eb80cc7a7f447f7b52ab217ad4b3",
+ "layer2_version": [
+  "0.6.16"
+ ],
+ "pair": {
+  "synthetic": "overdue_receivables_share (A0-37, assumption)",
+  "safe": "qa21 (late payments from private entities)"
+ },
+ "synthetic_by_size": {
+  "0-9": {
+   "firms": 6771,
+   "share_above_0": 0.6952,
+   "share_over_30": 0.253,
+   "share_not_applicable_or_unknown": 0.0072
+  },
+  "10-49": {
+   "firms": 492,
+   "share_above_0": 0.8766,
+   "share_over_30": 0.3226,
+   "share_not_applicable_or_unknown": 0.0017
+  },
+  "250+": {
+   "firms": 498,
+   "share_above_0": 0.979,
+   "share_over_30": 0.5653,
+   "share_not_applicable_or_unknown": 0.0
+  },
+  "50-249": {
+   "firms": 497,
+   "share_above_0": 0.9235,
+   "share_over_30": 0.4736,
+   "share_not_applicable_or_unknown": 0.0045
+  }
+ },
+ "safe_by_wave_and_size": {
+  "2024q3": {
+   "0-9": {
+    "n": 308,
+    "share_yes": 0.6266,
+    "share_yes_ci95": [
+     0.5714,
+     0.6788
+    ],
+    "share_regularly": 0.211,
+    "share_regularly_ci95": [
+     0.1692,
+     0.26
+    ]
+   },
+   "10-49": {
+    "n": 147,
+    "share_yes": 0.619,
+    "share_yes_ci95": [
+     0.5385,
+     0.6936
+    ],
+    "share_regularly": 0.2041,
+    "share_regularly_ci95": [
+     0.1469,
+     0.2764
+    ]
+   },
+   "50-249": {
+    "n": 230,
+    "share_yes": 0.7826,
+    "share_yes_ci95": [
+     0.7249,
+     0.831
+    ],
+    "share_regularly": 0.3217,
+    "share_regularly_ci95": [
+     0.2647,
+     0.3846
+    ]
+   },
+   "250+": {
+    "n": 66,
+    "share_yes": 0.8182,
+    "share_yes_ci95": [
+     0.7085,
+     0.8928
+    ],
+    "share_regularly": 0.2576,
+    "share_regularly_ci95": [
+     0.1675,
+     0.3743
+    ]
+   }
+  },
+  "2025q3": {
+   "0-9": {
+    "n": 132,
+    "share_yes": 0.5985,
+    "share_yes_ci95": [
+     0.5132,
+     0.6782
+    ],
+    "share_regularly": 0.2652,
+    "share_regularly_ci95": [
+     0.1973,
+     0.3463
+    ]
+   },
+   "10-49": {
+    "n": 97,
+    "share_yes": 0.6907,
+    "share_yes_ci95": [
+     0.593,
+     0.774
+    ],
+    "share_regularly": 0.299,
+    "share_regularly_ci95": [
+     0.2169,
+     0.3963
+    ]
+   },
+   "50-249": {
+    "n": 71,
+    "share_yes": 0.7465,
+    "share_yes_ci95": [
+     0.6345,
+     0.8332
+    ],
+    "share_regularly": 0.3239,
+    "share_regularly_ci95": [
+     0.2266,
+     0.4394
+    ]
+   },
+   "250+": {
+    "n": 20,
+    "share_yes": 0.75,
+    "share_yes_ci95": [
+     0.5313,
+     0.8881
+    ],
+    "share_regularly": 0.25,
+    "share_regularly_ci95": [
+     0.1119,
+     0.4687
+    ]
+   }
+  },
+  "2026q3": {
+   "0-9": {
+    "n": 308,
+    "share_yes": 0.5487,
+    "share_yes_ci95": [
+     0.4929,
+     0.6033
+    ],
+    "share_regularly": 0.2143,
+    "share_regularly_ci95": [
+     0.1721,
+     0.2635
+    ]
+   },
+   "10-49": {
+    "n": 148,
+    "share_yes": 0.723,
+    "share_yes_ci95": [
+     0.6459,
+     0.7887
+    ],
+    "share_regularly": 0.2905,
+    "share_regularly_ci95": [
+     0.2234,
+     0.3682
+    ]
+   },
+   "50-249": {
+    "n": 199,
+    "share_yes": 0.7236,
+    "share_yes_ci95": [
+     0.6577,
+     0.7811
+    ],
+    "share_regularly": 0.2513,
+    "share_regularly_ci95": [
+     0.1961,
+     0.3158
+    ]
+   },
+   "250+": {
+    "n": 63,
+    "share_yes": 0.7302,
+    "share_yes_ci95": [
+     0.6097,
+     0.8242
+    ],
+    "share_regularly": 0.3492,
+    "share_regularly_ci95": [
+     0.2433,
+     0.4725
+    ]
+   }
+  }
+ },
+ "note": "different measures (value share paid late vs a reported problem); SAFE 1-9 covers only firms with employees, the synthetic 0-9 all firms; SAFE unweighted within the size class"
+}

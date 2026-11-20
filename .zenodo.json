@@ -1,0 +1,26 @@
+{
+ "title": "SAFE validation: code and data for 'Does a Firm Profile Help an AI Agent Forecast Real Survey Answers? A Prospectively Specified Validation on the EC/ECB Survey on the Access to Finance of Enterprises for Polish Firms'",
+ "upload_type": "software",
+ "language": "eng",
+ "version": "1.0.2",
+ "creators": [
+  {
+   "name": "Pepliński, Szymon P.",
+   "affiliation": "Generatywnie",
+   "orcid": "0009-0008-2928-0655"
+  }
+ ],
+ "license": "Apache-2.0",
+ "keywords": [
+  "AI agents",
+  "language models",
+  "survey simulation",
+  "forecast validation",
+  "proper scoring rules",
+  "prospectively specified",
+  "SAFE",
+  "access to finance",
+  "Polish firms"
+ ],
+ "description": "Code, the analysis plan frozen before confirmatory model evaluation with its development amendments, the frozen settings, aggregate reports and the paper sources of a validation of language-model forecasts of firms' answers to the EC/ECB Survey on the access to finance of enterprises (Poland). This paper uses data from the EC/ECB Survey on the access to finance of enterprises. The SAFE microdata are not included; every number of the paper's tables can be read from the aggregate reports (scripts/safe_paper_numbers.py); the README describes recomputation and a new replication. Code Apache-2.0; texts, plan, reports and paper CC BY 4.0."
+}

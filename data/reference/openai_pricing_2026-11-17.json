@@ -1,0 +1,18 @@
+{
+ "source": "https://developers.openai.com/api/docs/pricing",
+ "model_page": "https://developers.openai.com/api/docs/models/gpt-6-luna",
+ "read_on": "2026-11-17",
+ "page_stamp": "none on the page (dated notes only, e.g. 'Priority processing was renamed Fast mode on July 30, 2026')",
+ "kind": "D (the model's Standard rows read on the pages on the date above; read by a separate agent, figures matching the project lead's reading)",
+ "currency": "USD per million tokens",
+ "processing_tier": "Standard (the runner sends service_tier 'default'; Batch, Flex, Fast and background windows are not used)",
+ "models": {
+  "gpt-6-luna": {
+   "short_context": {"input": 0.10, "cached_input": 0.01, "cache_write_30m": 0.125, "cache_write_12h": 0.25, "output": 0.50},
+   "long_context": {"input": 0.20, "cached_input": 0.02, "cache_write_30m": 0.25, "cache_write_12h": 0.50, "output": 0.75},
+   "threshold": "short context: input tokens <= 272000; long context: > 272000, priced for the full request",
+   "usage_reading": "Z: input_tokens includes the cached (read) and cache-written tokens; output_tokens includes the reasoning tokens",
+   "not_used": "Batch and Flex ($0.05 / $0.005 / $0.25), Fast ($0.20 / $0.02 / $1.00), background windows (30% / 40% below Standard), regional processing (+10%)"
+  }
+ }
+}

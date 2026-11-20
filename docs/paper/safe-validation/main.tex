@@ -1,0 +1,522 @@
+% Peplinski (2026), SAFE profile validation. Compile with pdflatex twice; the bibliography is inline (no BibTeX).
+% Code, frozen analysis plan and aggregate results: https://doi.org/10.5281/zenodo.24396236
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{threeparttable}
+\usepackage{array}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xcolor}
+\usepackage[round,authoryear]{natbib}
+
+\newcommand{\nats}{\,\text{nats}}
+
+\title{Does a Firm Profile Help an AI Agent Forecast Real Survey Answers?\\
+\large A Prospectively Specified Validation on the EC/ECB Survey on the Access to Finance of Enterprises for Polish Firms}
+\author{Szymon P. Pepliński\\ \small Generatywnie\\ \small ORCID 0009-0008-2928-0655}
+\date{20 November 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Language models are increasingly used as simulated respondents, yet it is rarely tested whether the detailed
+profile given to such an agent carries checkable information about how the real unit answers, beyond what a coarse
+segment already implies. We test this with firm-level records of the EC/ECB Survey on the access to finance of
+enterprises (SAFE) for Poland. For each firm, three language models receive either a full profile card built from
+other answers of the same interview (size, sector, turnover, age, ownership, exports, which sources of financing are
+relevant and were used, and financing applications with their outcomes or the stated reason for not applying) or a
+short card with size and sector only, and give a probability distribution over the firm's answer to how important access
+to finance has been as a problem (1--10). The primary measure is the band log score of the observed answer; the
+primary comparison per model is full versus short card, tested with a directional studentised bootstrap and Holm's
+procedure across the three models. After three development pilots, the analysis plan was frozen before model
+evaluation on the 2026Q3 wave (692 respondents). Aggregate test-answer counts had been seen during development;
+this exposure is disclosed separately from the subsequent confirmatory evaluation. For one model the full profile improves
+the forecast over the short card by 0.059\nats{} (95\% CI 0.022 to 0.095; Holm-adjusted rejection); for a second no
+improvement is detected at the precision reached (individual 95\% CI $-0.021$ to $0.062$\nats); for the third the full card is worse.
+However, on the primary band log score the forecasts of all three models, with either card, score below the plain
+marginal distribution of answers, and a penalised logistic regression on the same card fields outperforms them. The profile thus helps a weak segment
+forecast within a model, without establishing an advantage over simple statistical baselines.
+\end{abstract}
+
+\section{Introduction}
+
+Large language models are used to simulate survey respondents and economic agents
+\citep{argyle2023,horton2023,aher2023}, and the question of whose views such simulations reproduce has received
+attention \citep{santurkar2023}. In applied settings, an agent is often given a rich profile of the unit it stands
+for. Whether that profile carries information that can be checked against the unit's real answers, beyond a coarse
+segmentation such as firm size and sector, is an empirical question that a simulation alone cannot settle.
+
+This study belongs to a project that builds a population of Polish firms from public data and uses language-model
+agents to forecast how firms in that population would respond. The premise of such a framework is that a well-built
+firm profile carries information about the firm's real answers that a coarse segment does not. We test that premise
+where it can be checked against real respondents: in SAFE, where the profile and the answer come from the same firm.
+The profile tested here is therefore built from other answers of the same SAFE interview, not from public
+registers: structural characteristics, the use of financing, applications and their outcomes, and stated reasons for
+not applying. Such a profile may carry more information about the answer than a register-based one, so the result
+does not show that a register-based profile would work as well. The SAFE terms rule out any record-level linkage with
+register data, so a register-based profile cannot be scored against SAFE answers firm by firm. Comparisons of the simulated population with survey distributions are a separate,
+distribution-level step not reported here.
+
+We ask: \emph{does a firm's profile improve a language model's forecast of that firm's real survey answer over a
+forecast from its size and sector alone?} We answer it on public-sector survey microdata with a design that separates
+development from confirmation: the elicitation, the scoring, the tests and their calibration were fixed in a plan
+that was frozen before any model saw the held-out wave. A positive answer for a model would support testing richer
+agent profiles in later product experiments; it would not replace them. No product or offer was shown to the
+respondents, so the study does not validate product choices, purchase intentions or product decisions.
+
+\section{Data}
+
+\paragraph{Survey.} We use the Polish records of SAFE, a survey of enterprises run by the European Central Bank and
+the European Commission, from the waves of 2024Q3, 2025Q3 and 2026Q3, accessed under the ECB's SAFE microdata user
+agreement for scientific use. The target question is item 3 of question Q0b: ``How important have the following
+problems been for your enterprise during the previous quarter and current quarter? \ldots{} Access to finance'', on a
+scale from 1 (not at all important) to 10 (extremely important). Answers ``don't know'' are excluded from scoring and
+counted. The target question was chosen after a screening of several candidate questions on the development data only:
+for each, a penalised multinomial logit on the candidate card fields was compared with the marginal distribution in
+cross-validation grouped by firm, and Q0b\_3 showed one of the larger gains (0.060\nats{} in band log-loss, against
+0.021 for a question on late payments). The choice therefore rests on a signal found in development data; it was made
+before any model saw the test wave, and the frozen plan records it.
+
+\paragraph{Split.} The \emph{test} set is the 2026Q3 wave: 722 records, of which 692 answer Q0b\_3 with 1--10. The
+\emph{development} set contains 981 eligible firm--wave observations from 952 distinct firms in the 2024Q3 and
+2025Q3 waves, excluding every firm present in the test wave. Development pilots sampled one record per firm;
+the statistical baselines for the confirmatory analysis were trained on all 981 observations.
+
+\paragraph{Information available before freezing.} The test wave was reserved for confirmatory model evaluation,
+but its aggregate answers were not entirely unseen. The frozen plan records that reviewers (AI review agents; see Use of AI tools) had viewed the Q0b\_3
+marginal counts, including the 30 excluded answers, and aggregates for a separate item, qa21. The plan states that
+no recommendation was based on the exposed Q0b\_3 marginal. Test-wave size-class shares and the eligible sample size
+were used for planning precision and calibration; firm identifiers were used to exclude overlap with development
+data. These aggregate exposures limit any claim of a completely untouched holdout. The elicitation and analysis
+procedure were frozen before the confirmatory model evaluation.
+
+\paragraph{Profile cards.} The \emph{full card} states the firm's employment class, sector (four groups), annual
+turnover class, age class, the largest owner, the export share, for eleven sources of financing whether each is
+relevant to the firm (used in the past or considered for the future) and, if so, whether it was used in the
+period, and for up to four kinds of financing whether the firm applied and with what outcome or, if it did not
+apply, the stated reason (fear of rejection, sufficient internal funds, or other reasons). The card is thus a mix of
+structural characteristics, financing events and self-reported intentions and motives. Some of these are close in
+content to the target, a self-assessment of access to finance as a problem: in particular, not applying for fear of
+rejection, and not needing external funds. All of them were recorded in the same interview as the answer being
+forecast, so the task is to reconstruct a concurrent answer, not to forecast later behaviour. The card excludes the
+questions that the card key classes as perceptions or expectations (all items of Q0b, among them the target, and
+Q2, Q11, Q16, Q17 and Q19), the follow-up questions on late payments, and any identifier, weight or period. The \emph{short card} states employment class
+and sector only. A \emph{shuffled card} keeps the firm's size and sector and takes the remaining blocks from a donor
+firm of the same size$\times$sector cell; it is a diagnostic of whether matching the other features to the firm
+matters. Cards, the key that explains every code and the question are given to the models in Polish; the Polish
+wording is our translation of the English questionnaire.
+
+\section{Elicitation and models}
+
+\paragraph{Elicitation.} Each card is a separate conversation. The system prompt states the question (with the
+context of the Q0b battery), the key to the card and the task: imagine 100 firms drawn at random from firms in Poland
+that share every feature on the card, and state how many of them would choose each rating from 1 to 10; ratings that
+cannot be ruled out must not receive zero. The integers are normalised to a distribution. This form (``arm B'') was
+chosen on development data from three alternatives by a rule fixed beforehand (Section~\ref{sec:dev}).
+
+\paragraph{Models.} Three models were run with fixed settings, the same in the last development pilot and in the test:
+Qwen~3.8 27B served locally by Ollama (temperature 0, fixed seed, thinking off), Claude Haiku~5.5 through the
+Anthropic Messages API (effort ``medium'', thinking disabled) and GPT-6 Luna through the OpenAI Responses API
+(reasoning effort ``none''). The API models are identified by the model name the API reported, which may be an alias;
+the analysis compares, for every session, the SDK and API versions and the model's reported creation date with the
+frozen values.
+
+\paragraph{Repeated draws.} Model noise in the comparison was estimated on development data from repeated draws of
+both cards for the same firms. By a rule fixed in advance (the 80\% upper bound of the noise share of the variance of
+the per-firm difference below 0.2: one draw; below 0.5: two; else three), the confirmatory analysis averages the band
+log scores of $K=1$ draw for Qwen and Haiku and $K=2$ draws for Luna. This rule applies to the full and short cards.
+The shuffled-card diagnostic uses one shuffled draw per firm for every model; for Luna it therefore compares the
+average of two full-card log scores with one shuffled-card log score.
+
+\section{Scoring and inference}
+\label{sec:inference}
+
+\paragraph{Score.} Each forecast $p$ over the ten ratings is smoothed towards the uniform distribution,
+$\tilde p_j=0.99\,p_j+0.001$, and collapsed to three bands (1--3, 4--7, 8--10). The per-firm
+\emph{band log score} is the logarithm of the resulting probability of the observed band; higher is better.
+The ordinary logarithmic score is strictly proper for the distribution being evaluated \citep{gneiting2007}.
+Here the evaluated distribution is the smoothed three-band forecast. We do not claim strict propriety for the
+entire transformation as a scoring rule on the raw ten-rating forecast: collapsing bands discards within-band
+information, and smoothing changes the probabilities before scoring. For firm $i$ and a model,
+\begin{equation}
+d_i = S_i(\text{full}) - S_i(\text{short}),
+\end{equation}
+averaged over the $K$ draws of each card. The ten-value log score and the ranked probability score \citep{epstein1969}
+are reported as explanatory measures.
+
+\paragraph{Primary family.} For each model, $H_1$: the mean of $d$ is not positive. Each is tested with a two-sided
+studentised bootstrap (bootstrap-$t$, 10{,}000 resamples of firms; \citealp{hall1992,efron1993}) and a directional
+rule ($p$ if $\bar d>0$, otherwise 1). The family of the three $H_1$ is controlled by Holm's procedure at $\alpha=0.05$
+\citep{holm1979}. A rejection supports the claim for that model only. The bootstrap resamples firms together with the
+scores their forecasts obtained; it does not call the models again. The intervals therefore describe the uncertainty
+of a mean over respondents drawn like these, given the answers the models gave, and include model noise only through
+the realised per-firm scores; they do not measure the variation of repeated model answers on the same cards alone.
+Nor do they support inference to all Polish firms: the respondents are an unweighted set of complete cases from one
+survey wave.
+
+\paragraph{Valid answers and retries.} An answer is valid when it is one JSON object with exactly two keys, the counts
+for the ratings 1 to 10 (each an integer from 0 to 100, not all zero) and a text reason; duplicate keys, other keys,
+non-integers and text around the object make it invalid. The counts are divided by their sum, which need not be 100.
+The instruction not to give zero to ratings that cannot be ruled out is not enforced by the parser; zeros are handled
+by the smoothing of the score. A refusal, a cut-off or an invalid answer is asked again in a fresh conversation, up to
+two attempts in all; the first valid answer is used, and an item still without one is a technical error, never a
+survey answer. A retry repeats the same item and is not one of the $K$ draws: the $K$ draws are separate items of the
+build, each with its own up to two attempts. For the local model at temperature 0 with a fixed seed, a retry usually
+repeats the invalid answer.
+
+\paragraph{Estimand and missing answers.} The estimand is the mean $d$ among the respondents for whom all $K$ draws of
+both cards gave a valid answer (complete cases). Coverage is reported with three sensitivities over all eligible
+respondents: invalid answers scored as the marginal distribution, scored worst in both arms, and scored against the
+claim (worst for the full card, marginal for the short card).
+
+\paragraph{Mandatory references and exploratory analyses.} For every model the differences full minus marginal and
+short minus marginal are reported, together with the diagnostic full minus shuffled. An exploratory comparison
+($H_3$) of the full card with a penalised multinomial logit on size and sector, and statistical baselines, are reported
+without any confirmatory claim. All statistical baselines are estimated on the 981 development observations and
+predict the ten ratings; their forecasts are smoothed and scored like the models'. The \emph{marginal distribution}
+is the distribution of the ten ratings in the development data with 0.5 added to each of the ten counts. The
+\emph{logit} is an L2-penalised multinomial logit on the 25 card columns (six structural fields, eleven sources of
+financing, four applications and four outcomes), with the penalty chosen by four-fold cross-validation grouped by firm
+on the same smoothed band log score; the logit on size and sector uses the same procedure on those two fields, and an
+explanatory ablation leaves out the applications and their outcomes. Each comparison uses the firms with valid answers
+for the cards it involves, so denominators differ between comparisons (Table~\ref{tab:ref}). The intervals for
+differences from the marginal and for $H_3$ are symmetric studentised bootstrap intervals; those for full minus
+shuffled are percentile bootstrap intervals.
+
+\paragraph{Calibration of the test.} Before freezing, the level of the directional bootstrap-$t$ was checked on each
+model's own centred development differences, at the expected number of complete cases and at 692 firms, for $H_1$ and
+$H_3$, at every local level a graphical procedure over $H_1$ and $H_3$ could reach (0.0167, 0.025, 0.05): 4{,}000 outer
+replications with 10{,}000 inner resamples, and simultaneous one-sided 95\% Clopper--Pearson bounds \citep{clopper1934}
+with a Bonferroni correction over all 36 bounds. The outer replications resample the empirical distribution of the
+centred development differences, so the check concerns the level under that distribution, not under every
+distribution the test sample could have. All 18 bounds for $H_1$ lay within their levels; four bounds for $H_3$
+(two models) did not, with observed rates below their levels. Because a graphical procedure \citep{bretz2009,bretz2011}
+would pass the level of a rejected $H_3$ on to the other $H_1$, the plan's open choice between that procedure and Holm
+over the three $H_1$ was resolved for Holm before the confirmatory analysis, and $H_3$ became exploratory. This decision
+was taken after development results and is reported as such.
+
+\section{Development stage}
+\label{sec:dev}
+
+Three development pilots and one comparison of elicitations preceded the freezing; they informed the design and are
+not evidence for the claim. Table~\ref{tab:dev} summarises the mean $d$.
+
+\begin{table}[ht]
+\centering
+\begin{threeparttable}
+\caption{Development pilots: mean $d$ (full minus short card, band log score, nats).}
+\label{tab:dev}
+\small
+\begin{tabular}{llp{6.0cm}rrr}
+\toprule
+Pilot & Sample & Elicitation & Qwen & Haiku & Luna\\
+\midrule
+1 & 120 & probabilities, no zero for ratings that cannot be ruled out & $+0.100$ & $+0.167$ & $+0.067$\\
+2 & 120 & counts per 100, zeros allowed & $-0.302$ & $-0.086$ & $+0.003$\\
+3 & 101 & counts per 100, arm B (chosen) & $-0.232$ & $-0.022$ & $+0.088$\tnote{a}\\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}\footnotesize
+\item Sample is the number of firms selected, not the complete-case denominator. In Qwen/Haiku/Luna order,
+the numbers contributing to the reported means are 84/117/120 in pilot 1, 112/120/120 in pilot 2, and 100/101/101
+in pilot 3. Differences across pilots reflect changes in firms, elicitation and complete-case coverage.
+\item[a] With $K=2$ draws; $+0.076$ with the first draw. All other entries use the first draw.
+Pilot 3 selected 30 firms in each of the three smaller size classes and all 11 remaining firms with 250 or more employees.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\paragraph{Diagnosis after pilot 2.} In pilot 2 Qwen's full-card answers often put zero on the whole band 8--10, and
+nine of 112 firms whose observed answer had near-zero probability accounted for 81\% of the negative sum of $d$; its
+technical errors were valid objects with every count zero. The causal role of the instruction was a hypothesis, tested
+next.
+
+\paragraph{Comparison of elicitations.} On the same 120 firms and the same cards, three instructions were compared:
+A, counts per 100 with the zero rule of pilot 2; B, the same with only the zero rule replaced by that of pilot 1; C, the
+probabilities instruction of pilot 1. The rule, fixed before the calls, ranked arms by the mean band log score relative
+to the marginal with equal weights of models and cards, excluded arms with more than 5\% technical errors for any model
+and card, excluded an eligible arm only when another eligible arm had a demonstrated advantage (paired bootstrap over
+firms, family-wise 95\% over the three pairs), and among the remaining arms chose the smallest change (A, then B, then
+C) --- a conservative choice under an unresolved difference, not a claim of equivalence \citep{lakens2017}. The mean
+scores were $-0.105$ (A), $-0.086$ (B) and $-0.075$ (C) with no demonstrated difference; only B met the error limit,
+and B was chosen.
+
+\paragraph{Pilot 3 and freezing.} Arm B was then run on 101 new development firms. Technical requirements were met
+(one Qwen full-card first draw was invalid; no short-card first draws were invalid), and the calibration check of
+Section~\ref{sec:inference} was run on these data. The frozen settings bind the confirmatory analysis to the very test
+set (SHA-256 of the source, items and key), to the run settings and $K$ of each model, to the SHA-256 of the scripts,
+the card key and the plan, and to the runner modules and serving stack recorded in every session.
+
+\section{Results}
+
+\paragraph{Primary family.} Table~\ref{tab:main} gives the confirmatory result on the 2026Q3 wave.
+
+\begin{table}[ht]
+\centering
+\begin{threeparttable}
+\caption{Confirmatory comparison on the 2026Q3 test wave (692 respondents): full versus short card.}
+\label{tab:main}
+\small
+\setlength{\tabcolsep}{3.5pt}
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lcccccc@{}}
+\toprule
+Model & $K$ & Firms (coverage) & Mean $d$ (nats) & 95\% CI & Directional $p$ & Holm\\
+\midrule
+GPT-6 Luna & 2 & 692 (1.00) & $+0.059$ & $[0.022,\ 0.095]$ & 0.0019 & rejected\\
+Claude Haiku 5.5 & 1 & 689 (0.996) & $+0.021$ & $[-0.021,\ 0.062]$ & 0.32 & not rejected\\
+Qwen 3.8 27B & 1 & 685 (0.990) & $-0.192$ & $[-0.267,\ -0.116]$ & 1 & not rejected\\
+\bottomrule
+\end{tabular*}
+\begin{tablenotes}\footnotesize
+\item Individual symmetric studentised bootstrap 95\% intervals, not simultaneous intervals for the family.
+Holm adjusts the hypothesis-test decisions. Luna had no technical errors, so all sensitivities equal the main
+result; the sign-flip and $t$ tests give $p=0.0016$ and $p=0.0019$. For Haiku, scoring invalid answers worst gives
+$+0.0003$. Qwen's errors were differential (7 full cards, 0 short cards); the sensitivity against the claim is
+$-0.221$.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+For Luna, the full profile improves the band log score over the short card by 0.059\nats{} on average among complete
+cases, and the rejection survives Holm's correction across the three models. For Haiku, no improvement is detected at
+the precision reached: the estimate is $+0.021$\nats{}, with an individual 95\% interval from $-0.021$ to
+$+0.062$\nats{}. Its upper endpoint describes the uncertainty under this procedure; it is not a certain bound
+or a demonstration of practical equivalence. For Qwen, the full card lowers the score.
+
+\paragraph{References.} Table~\ref{tab:ref} reports the mandatory references.
+
+\begin{table}[ht]
+\centering
+\begin{threeparttable}
+\caption{Band log score relative to references (nats; individual descriptive 95\% CI), test wave.}
+\label{tab:ref}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{lcrcrcr}
+\toprule
+Model & Full minus marginal & $n$ & Short minus marginal & $n$ & Full minus shuffled & $n$\\
+\midrule
+GPT-6 Luna & $-0.062\ [-0.117,\ -0.008]$ & 692 & $-0.121\ [-0.164,\ -0.077]$ & 692 & $+0.186\ [0.137,\ 0.238]$ & 692\\
+Claude Haiku 5.5 & $-0.050\ [-0.088,\ -0.013]$ & 689 & $-0.070\ [-0.096,\ -0.044]$ & 692 & $+0.052\ [0.001,\ 0.103]$ & 686\\
+Qwen 3.8 27B & $-0.359\ [-0.455,\ -0.263]$ & 685 & $-0.179\ [-0.236,\ -0.121]$ & 692 & $+0.279\ [0.190,\ 0.368]$ & 681\\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}\footnotesize
+\item $n$: firms in the comparison (valid answers for every card it involves). The first two columns use different
+firms where $n$ differs, so their difference need not equal the $H_1$ estimate of Table~\ref{tab:main} (Qwen:
+$-0.180$ against $-0.192$). Studentised intervals against the marginal, percentile intervals for full minus shuffled.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+In the test wave (692 firms) the band log-loss of the marginal distribution is 1.061, of the logit on size and sector
+1.060 and of the logit on all card fields 0.981, a gain of 0.081\nats{} over the marginal; without the applications
+and their outcomes the logit reaches 1.004, between the two. The exploratory $H_3$ differences (full card minus the
+logit on size and sector, on the complete cases of the full card: 692, 689 and 685 firms) are $-0.064$
+$[-0.118, -0.010]$ for Luna, $-0.052$ $[-0.090, -0.014]$ for Haiku and $-0.361$ $[-0.456, -0.265]$ for Qwen.
+
+\paragraph{Explanatory measures.} Table~\ref{tab:expl} reports the two explanatory measures announced in the plan.
+They are descriptive: no interval or test was planned for them, and none is reported. On the ten-value log score
+every model forecast is worse than the marginal. On the ranked probability score Luna's full card (0.192) is
+descriptively better than the marginal (0.198), on the same 692 firms; Haiku's and Qwen's full cards are not. The
+statements below about losing to the marginal therefore refer to the primary band log score.
+
+\begin{table}[ht]
+\centering
+\begin{threeparttable}
+\caption{Explanatory measures on the test wave: ten-value log-loss and ranked probability score (lower is better).}
+\label{tab:expl}
+\small
+\begin{tabular}{lrrrrr}
+\toprule
+ & \multicolumn{2}{c}{Ten-value log-loss} & \multicolumn{2}{c}{RPS} & \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}
+Forecast & Full & Short & Full & Short & Firms\\
+\midrule
+GPT-6 Luna & 2.377 & 2.385 & 0.192 & 0.212 & 692\\
+Claude Haiku 5.5 & 2.230 & 2.284 & 0.205 & 0.216 & 689\\
+Qwen 3.8 27B & 2.587 & 2.453 & 0.218 & 0.211 & 685\\
+\midrule
+Marginal distribution & \multicolumn{2}{c}{2.059} & \multicolumn{2}{c}{0.198} & 692\\
+Logit on size and sector & \multicolumn{2}{c}{2.055} & \multicolumn{2}{c}{0.198} & 692\\
+Logit on all card fields & \multicolumn{2}{c}{1.963} & \multicolumn{2}{c}{0.175} & 692\\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}\footnotesize
+\item Models: complete cases of the primary comparison; statistical forecasts: all 692 eligible firms. Ten-value
+log-loss and RPS of the smoothed ten-rating forecast.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\section{Discussion}
+
+The result for Luna is the configuration the plan anticipated as ambiguous: the full profile improves the model's
+forecast over its own short-card forecast. The descriptive full-minus-shuffled comparison is positive, consistent
+with a benefit from matching the other features to the firm. However, on the primary band log score both the
+short-card and full-card forecasts score below the marginal distribution (on the explanatory RPS Luna's full card is
+descriptively slightly better than the marginal; Table~\ref{tab:expl}). In the plan's words, the
+profile helps a weak segment variant while the model loses to the plain distribution of answers. The statistical
+baseline on the same fields, a regularised logit, beats every model's full-card forecast (by 0.143\nats{} for Luna,
+0.131 for Haiku and 0.434 for Qwen). A positive $H_1$ is therefore
+not evidence of an advantage over a statistical model, nor of value for product decisions; it establishes that, for
+one model and one task, the profile carries information the model uses. The statistical baselines learn from 981
+development answers, which the models do not see; the comparison is one of available procedures, not a bound on what
+language models can do. The ablation of the logit suggests that the application block, including the stated reasons
+for not applying, carries part of the signal; it does not identify what the models use.
+
+The development stage shows how sensitive such results can be. The mean $d$ of one model differed by about
+0.4\nats{} between two pilots that differed both in the firms and in the elicitation; within one sample, most of the
+negative sum came from a few confident misses that a log score penalises heavily. On the same firms and cards,
+replacing only the zero rule (A versus B) raised that model's full-card score relative to the marginal from $-0.376$ to
+$-0.252$. The planned comparison did not establish a difference between arms; this does not establish equivalence
+or, by itself, identify insufficient power as the explanation.
+
+\paragraph{What this means for population-level profiles.} The result speaks to the premise, not to a particular
+population: it shows that one model can use profile information of the kind a population of firms would carry, on a
+task where the answer is real. It does not show that profiles assembled from registers are as informative as survey
+fields of the same firm, nor that the forecasts are good in absolute terms; on the primary measure they are not
+better than the marginal distribution. It also scores individual forecasts, which is a different target from
+reproducing the distribution of answers within a segment: a forecast can match a segment's distribution without
+distinguishing firms, or improve individual forecasts while the segment's distribution stays wrong. Variation between
+a model's draws for the same card is model noise, not evidence that the model reproduces the heterogeneity of similar
+firms. A population-level check against the distributions of SAFE answers by segment is the natural next step and needs
+no record-level linkage. Using a statistical model for a firm's needs and a language model for its reaction to a
+specific offer is a working hypothesis that this study motivates but does not test; testing it needs data in which
+real firms reacted to described offers.
+
+\paragraph{Limitations.} The claim is about complete cases of the 2026Q3 Polish SAFE respondents answering 1--10, not
+the population of firms; weighted results are explanatory only (Luna, weighted: $+0.029$). One question and one country
+are covered. The API models are identified by reported names that may be aliases. The calibration of $H_3$ was not
+confirmed for two models, which is why $H_3$ is exploratory; the switch from the graphical procedure to Holm was made
+after development results. The development pilots informed the design rather than serving as confirmatory evidence.
+Aggregate test-answer counts had been seen before freezing, as disclosed in the Data section; the test wave should
+not be described as a completely untouched holdout. The order of freezing and confirmatory runs is documented by the
+frozen settings (with the approval date entered by the author), the checksums that bind the analysis to them, and the
+commit history of the private project repository; it was not registered with an independent registry, and we do not
+describe it as a preregistration. The plan asked for each model's stated training cutoff to be recorded before
+freezing; this was not done. Record-level SAFE data are available under the ECB's user agreement and published
+aggregates of earlier waves are public; whether a model had seen SAFE files or aggregates in training, including the
+2026Q3 public-use file published in late October 2026, was not established. This is a limit on interpretation, not
+evidence of memorisation, and it is separate from the researchers' disclosed exposure to aggregates.
+
+\section*{Use of AI tools}
+
+In addition to the three language models evaluated in this study, the author used large-language-model-based AI
+assistants throughout the work to write most of the code according to the author's specifications, run analyses and
+checks, and verify references. The author reviewed the code at each step and requested corrections where needed. The
+code reviews, blind-agent checks of the study materials, and domain review rounds documented in the author's validation log were
+conducted by separate AI agent instances as additional checks alongside the author's own verification. These checks
+should not be interpreted as independent human expert review. The author designed the study, made or approved every
+decision recorded in the frozen plan and validation log, approved the freezing of the study protocol, and takes full
+responsibility for the paper and the archived materials.
+
+\section*{Data and code availability}
+
+The SAFE microdata are available from the ECB under its user agreement and are not redistributed. No record-level
+SAFE data were linked with any other firm data. The code (extract preparation, card construction, elicitation, runner,
+analysis and the checks of the frozen plan), the frozen plan with its development amendments, the frozen settings and
+the aggregate reports are in the repository \url{https://github.com/speplinski/safe-profile-validation}, archived on
+Zenodo (\url{https://doi.org/10.5281/zenodo.24396236}, all versions). The validation log, with every decision, review
+round and correction, is kept in Polish in the author's project repository and is available from the author on request. Three levels of reproduction are distinct.
+(i)~\emph{Reading the tables}: \texttt{scripts/safe\_paper\_numbers.py} prints every number of the tables from the
+archived aggregate reports and checks that the confirmatory report was made with the archived frozen settings, plan
+and analysis script; it reads the stored estimates and does not recompute them. (ii)~\emph{Recomputing from the
+historical model answers}: the item-level answers are derived from SAFE records and are not published, so this needs
+them from the author together with SAFE access. (iii)~\emph{A new replication}: \texttt{scripts/safe\_extract.py}
+makes the Polish extract from the ECB archive \texttt{ecb.SAFE\_microdata.zip} (the version used has SHA-256
+\texttt{64a118f1\ldots}, downloaded on 12 November 2026); with pandas 3.0.5 it reproduces the extract of this study
+byte for byte (SHA-256 \texttt{15fef143\ldots}), from which \texttt{scripts/safe\_build.py} rebuilds the test items.
+New model runs are then needed; served models behind API aliases may have changed and need not give the same answers,
+and the analysis refuses runs on a serving stack other than the frozen one. A new replication should be analysed
+under its own frozen settings, not reported as the original run. The confirmatory report did not record the versions
+of the numerical libraries; the archived tests pass with Python 3.13, NumPy 2.5 and SciPy 1.18.
+
+\section*{Acknowledgements and data source}
+
+This paper uses data from the EC/ECB Survey on the access to finance of enterprises.
+
+\begin{thebibliography}{99}
+
+\bibitem[Aher et~al.(2023)]{aher2023}
+G.~V. Aher, R.~I. Arriaga, and A.~T. Kalai.
+\newblock Using large language models to simulate multiple humans and replicate human subject studies.
+\newblock In \emph{Proceedings of the 40th International Conference on Machine Learning}, PMLR 202, pages 337--371, 2023.
+
+\bibitem[Argyle et~al.(2023)]{argyle2023}
+L.~P. Argyle, E.~C. Busby, N.~Fulda, J.~R. Gubler, C.~Rytting, and D.~Wingate.
+\newblock Out of one, many: Using language models to simulate human samples.
+\newblock \emph{Political Analysis}, 31(3):337--351, 2023.
+\newblock doi:10.1017/pan.2023.2.
+
+\bibitem[Bretz et~al.(2009)]{bretz2009}
+F.~Bretz, W.~Maurer, W.~Brannath, and M.~Posch.
+\newblock A graphical approach to sequentially rejective multiple test procedures.
+\newblock \emph{Statistics in Medicine}, 28(4):586--604, 2009.
+\newblock doi:10.1002/sim.3495.
+
+\bibitem[Bretz et~al.(2011)]{bretz2011}
+F.~Bretz, M.~Posch, E.~Glimm, F.~Klinglmueller, W.~Maurer, and K.~Rohmeyer.
+\newblock Graphical approaches for multiple comparison procedures using weighted {B}onferroni, {S}imes, or parametric tests.
+\newblock \emph{Biometrical Journal}, 53(6):894--913, 2011.
+\newblock doi:10.1002/bimj.201000239.
+
+\bibitem[Clopper and Pearson(1934)]{clopper1934}
+C.~J. Clopper and E.~S. Pearson.
+\newblock The use of confidence or fiducial limits illustrated in the case of the binomial.
+\newblock \emph{Biometrika}, 26(4):404--413, 1934.
+\newblock doi:10.1093/biomet/26.4.404.
+
+\bibitem[Efron and Tibshirani(1993)]{efron1993}
+B.~Efron and R.~J. Tibshirani.
+\newblock \emph{An Introduction to the Bootstrap}.
+\newblock Chapman \& Hall, 1993.
+
+\bibitem[Epstein(1969)]{epstein1969}
+E.~S. Epstein.
+\newblock A scoring system for probability forecasts of ranked categories.
+\newblock \emph{Journal of Applied Meteorology}, 8(6):985--987, 1969.
+\newblock doi:10.1175/1520-0450(1969)008<0985:ASSFPF>2.0.CO;2.
+
+\bibitem[Gneiting and Raftery(2007)]{gneiting2007}
+T.~Gneiting and A.~E. Raftery.
+\newblock Strictly proper scoring rules, prediction, and estimation.
+\newblock \emph{Journal of the American Statistical Association}, 102(477):359--378, 2007.
+\newblock doi:10.1198/016214506000001437.
+
+\bibitem[Hall(1992)]{hall1992}
+P.~Hall.
+\newblock \emph{The Bootstrap and Edgeworth Expansion}.
+\newblock Springer, New York, 1992.
+
+\bibitem[Holm(1979)]{holm1979}
+S.~Holm.
+\newblock A simple sequentially rejective multiple test procedure.
+\newblock \emph{Scandinavian Journal of Statistics}, 6(2):65--70, 1979.
+\newblock \url{https://www.jstor.org/stable/4615733}.
+
+\bibitem[Horton et~al.(2023)]{horton2023}
+J.~J. Horton, A.~Filippas, and B.~S. Manning.
+\newblock Large language models as simulated economic agents: What can we learn from {H}omo silicus?
+\newblock NBER Working Paper 31122, 2023.
+\newblock doi:10.3386/w31122.
+
+\bibitem[Lakens(2017)]{lakens2017}
+D.~Lakens.
+\newblock Equivalence tests: A practical primer for t tests, correlations, and meta-analyses.
+\newblock \emph{Social Psychological and Personality Science}, 8(4):355--362, 2017.
+\newblock doi:10.1177/1948550617697177.
+
+\bibitem[Santurkar et~al.(2023)]{santurkar2023}
+S.~Santurkar, E.~Durmus, F.~Ladhak, C.~Lee, P.~Liang, and T.~Hashimoto.
+\newblock Whose opinions do language models reflect?
+\newblock In \emph{Proceedings of the 40th International Conference on Machine Learning}, PMLR 202, pages 29971--30004, 2023.
+
+\end{thebibliography}
+
+\end{document}

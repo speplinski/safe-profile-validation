@@ -1,0 +1,6 @@
+numpy
+scipy
+pandas
+pytest
+anthropic==2.8.0
+openai==3.53.0

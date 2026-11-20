@@ -1,0 +1,1469 @@
+{
+ "script": "safe_analyze 0.8",
+ "script_sha256": "4190a522274931e939312bf3366d91814d73408eeed158973c5f3d5caaf197d0",
+ "plan_sha256": "ee584a5f72fb2686798ef03adb7dd1ce6c4e27d067b1e5276f4f082505fb4175",
+ "frozen_sha256": "3a1406385550b8ed6a683fc711b6f094fb9fdeb405c05afb4ae703020490bc6f",
+ "draws_by_model": {
+  "qwen": 1,
+  "haiku": 1,
+  "luna": 2
+ },
+ "k_source": null,
+ "settings_source": null,
+ "conventions": "log score: higher is better; log-loss: its negative; d and 'minus': differences of log scores",
+ "build": {
+  "split": "test",
+  "items_sha256": "4b866118e8b9ac985cebb6b3b0a8063d2a26dd5a259afcc9b64e2baaea48d531",
+  "records": 692,
+  "items": 3460,
+  "card_key_sha256": "dc5a4e42954c9ac4cccc1843c17845fedf47892f46fa71ec2d05acf40418f9f8",
+  "elicitation": "counts_nozero",
+  "sample_by_size": null,
+  "prompt_sha256": "663a6725480e2d1e7c6a1f0ad52038a57f6dedd17b9e26a93dfb63d640b94f7a",
+  "target_answers_in_split": {
+   "1-10": 692,
+   "99": 30
+  }
+ },
+ "source_sha256": "15fef1438998053d13765e34c72cdbae6ebe1ed24c3b53ebbf569eb279974f1d",
+ "audit_sha256": "4b01667acfc26f13dffe379117d4d6fd54c14e5551a1d7b23a4c8f810c97af98",
+ "firms": 692,
+ "answers_1_10": {
+  "5": 116,
+  "1": 212,
+  "3": 49,
+  "8": 53,
+  "9": 21,
+  "10": 86,
+  "2": 53,
+  "6": 26,
+  "4": 43,
+  "7": 33
+ },
+ "statistical": {
+  "training_records": 981,
+  "penalties": {
+   "logit": 0.03,
+   "logit_segment": 0.3,
+   "logit_without_applications": 0.03
+  },
+  "band_logloss": {
+   "marginal": 1.0614,
+   "rule": 1.0545,
+   "logit": 0.9808,
+   "logit_segment": 1.0597,
+   "logit_without_applications": 1.0037
+  },
+  "ten_logloss": {
+   "marginal": 2.059,
+   "rule": 2.0886,
+   "logit": 1.9633,
+   "logit_segment": 2.0547,
+   "logit_without_applications": 1.9909
+  },
+  "rps": {
+   "marginal": 0.1982,
+   "rule": 0.1969,
+   "logit": 0.1752,
+   "logit_segment": 0.1978,
+   "logit_without_applications": 0.1821
+  }
+ },
+ "models": {
+  "qwen": {
+   "model": "qwen3.8:27b",
+   "api": "ollama",
+   "technical_errors": {
+    "full": 7,
+    "segment": 0,
+    "shuffled": 4
+   },
+   "technical_error_outcomes": {
+    "invalid_format": 18
+   },
+   "draws": "fixed K = 1",
+   "served_model": null,
+   "run_identity": {
+    "config": {
+     "script": "0.9.5",
+     "api": "ollama",
+     "model": "qwen3.8:27b",
+     "base_url": "http://127.0.0.1:11434",
+     "max_tokens": 2000,
+     "num_ctx": 32768,
+     "think": "false",
+     "chat_template_kwargs": null,
+     "effort": null,
+     "max_attempts": 2,
+     "temperature": 0,
+     "seed": 20261114,
+     "parser": "safe_counts"
+    },
+    "items_sha256": "4b866118e8b9ac985cebb6b3b0a8063d2a26dd5a259afcc9b64e2baaea48d531",
+    "model_digest": "47951e4a666180bc2aedfc93c169472f2de783696fe196efbf063f5730ecf163",
+    "served_model": null,
+    "answers_sha256": "7281c8fcdbfa414f82133726f7d7c58fd7e24ea9509c97806dbddd798f1ec043"
+   },
+   "served_models_all_answers": {},
+   "technical_error_definition": "a firm-card is an error when any draw used is invalid",
+   "raw_sums": {
+    "full": {
+     "answers": 685,
+     "share_exactly_100": 0.9985,
+     "share_outside_80_120": 0.0,
+     "share_outside_50_200": 0.0,
+     "min": 100.0,
+     "median": 100.0,
+     "max": 105.0
+    },
+    "segment": {
+     "answers": 692,
+     "share_exactly_100": 0.5983,
+     "share_outside_80_120": 0.0,
+     "share_outside_50_200": 0.0,
+     "min": 100.0,
+     "median": 100.0,
+     "max": 105.0
+    },
+    "shuffled": {
+     "answers": 688,
+     "share_exactly_100": 1.0,
+     "share_outside_80_120": 0.0,
+     "share_outside_50_200": 0.0,
+     "min": 100.0,
+     "median": 100.0,
+     "max": 100.0
+    }
+   },
+   "raw_sums_draws": "the draws used (fixed K = 1), valid answers also of firm-cards that are errors: they describe the answers, not the denominator",
+   "technical_error_shares": {
+    "full": 0.0101,
+    "segment": 0.0,
+    "shuffled": 0.0058
+   },
+   "technical_error_flag": {
+    "over_threshold": false,
+    "threshold": 0.05,
+    "full_minus_segment": 0.0101,
+    "ci95": [
+     0.0029,
+     0.0188
+    ],
+    "differential": true,
+    "equal_footing_sensitivity": "errors_against_the_claim",
+    "note": "with differential errors only the against-the-claim sensitivity stands on equal footing with the main result; the symmetric worst case then favours the claim"
+   },
+   "coverage": {
+    "eligible_firms": 692,
+    "firms_in_the_main_comparison": 685,
+    "share": 0.9899,
+    "note": "the main result is the mean d among the firms with all used draws of both cards valid (complete cases at this K); a larger K or a model that fails more often removes more firms, so read it with the coverage and the error sensitivities"
+   },
+   "primary": {
+    "firms": 685,
+    "mean_d": -0.1915,
+    "ci95": [
+     -0.2671,
+     -0.1159
+    ],
+    "ci95_percentile": [
+     -0.2668,
+     -0.119
+    ],
+    "p": 9.999000099990002e-05,
+    "p_note": null,
+    "draws": "fixed K = 1",
+    "estimand": "mean d among firms with all used draws of both cards valid (complete cases)",
+    "test": "two-sided bootstrap-t",
+    "p_sign_flip": 9.999000099990002e-05,
+    "p_t": 1.015675831218126e-06,
+    "skewness_of_d": -0.3968,
+    "sensitivity": {
+     "errors_as_marginal": {
+      "firms": 692,
+      "mean_d": -0.1767,
+      "p": 9.999000099990002e-05
+     },
+     "errors_worst_symmetric": {
+      "firms": 692,
+      "mean_d": -0.2206,
+      "p": 9.999000099990002e-05
+     },
+     "errors_against_the_claim": {
+      "firms": 692,
+      "mean_d": -0.2206,
+      "p": 9.999000099990002e-05
+     },
+     "without_sums_outside_range": {
+      "firms": 685,
+      "mean_d": -0.1915,
+      "p": 9.999000099990002e-05,
+      "share_of_answers_outside": 0.0,
+      "equal_footing": false,
+      "note": "answers with a raw sum outside (50, 200) treated as technical errors (plan F4)"
+     },
+     "floor_0.001": {
+      "firms": 685,
+      "mean_d": -0.2452,
+      "note": "explanatory, no claim"
+     },
+     "floor_0.05": {
+      "firms": 685,
+      "mean_d": -0.1146,
+      "note": "explanatory, no claim"
+     }
+    },
+    "mean_d_weighted_wgtcommon": -0.2198,
+    "weighted_note": "explanatory; SAFE weights are scaled within a wave, so in a development build (two waves) the weighted mean mixes two scales; in the test wave it does not"
+   },
+   "references": {
+    "full": {
+     "firms": 685,
+     "band_logloss": 1.4165,
+     "minus_marginal": -0.3588,
+     "minus_rule": -0.3668,
+     "minus_logit": -0.4344,
+     "minus_logit_segment": -0.3605,
+     "minus_logit_without_applications": -0.4139,
+     "minus_marginal_ci95": [
+      -0.4545,
+      -0.2632
+     ]
+    },
+    "segment": {
+     "firms": 692,
+     "band_logloss": 1.2399,
+     "minus_marginal": -0.1785,
+     "minus_rule": -0.1853,
+     "minus_logit": -0.2591,
+     "minus_logit_segment": -0.1802,
+     "minus_logit_without_applications": -0.2361,
+     "minus_marginal_ci95": [
+      -0.2356,
+      -0.1214
+     ]
+    },
+    "shuffled": {
+     "firms": 688,
+     "band_logloss": 1.7171,
+     "minus_marginal": -0.6551,
+     "minus_rule": -0.6619,
+     "minus_logit": -0.7363,
+     "minus_logit_segment": -0.6568,
+     "minus_logit_without_applications": -0.7138,
+     "minus_marginal_ci95": [
+      -0.7669,
+      -0.5434
+     ]
+    }
+   },
+   "ten_logloss": {
+    "full": 2.5867,
+    "segment": 2.4526
+   },
+   "rps": {
+    "full": 0.2176,
+    "segment": 0.2106
+   },
+   "full_minus_shuffled": {
+    "firms": 681,
+    "mean": 0.2791,
+    "ci95": [
+     0.1897,
+     0.368
+    ],
+    "note": "diagnostic, no test; an interval that includes 0 leaves open whether matching the other features to this firm improves the score"
+   },
+   "floor_acts": {
+    "full": 0.0161,
+    "segment": 0.0,
+    "shuffled": 0.048
+   },
+   "floor_acts_draws": "first draw",
+   "calibration": {
+    "full": {
+     "all": {
+      "1-3": {
+       "mean_predicted": 0.7272,
+       "observed": 0.4584
+      },
+      "4-7": {
+       "mean_predicted": 0.2305,
+       "observed": 0.3168
+      },
+      "8-10": {
+       "mean_predicted": 0.0423,
+       "observed": 0.2248
+      }
+     },
+     "1": {
+      "1-3": {
+       "mean_predicted": 0.7698,
+       "observed": 0.5246
+      },
+      "4-7": {
+       "mean_predicted": 0.1866,
+       "observed": 0.2535
+      },
+      "8-10": {
+       "mean_predicted": 0.0436,
+       "observed": 0.2218
+      }
+     },
+     "2": {
+      "1-3": {
+       "mean_predicted": 0.7102,
+       "observed": 0.4514
+      },
+      "4-7": {
+       "mean_predicted": 0.236,
+       "observed": 0.3472
+      },
+      "8-10": {
+       "mean_predicted": 0.0537,
+       "observed": 0.2014
+      }
+     },
+     "3": {
+      "1-3": {
+       "mean_predicted": 0.6847,
+       "observed": 0.3969
+      },
+      "4-7": {
+       "mean_predicted": 0.2812,
+       "observed": 0.3557
+      },
+      "8-10": {
+       "mean_predicted": 0.0341,
+       "observed": 0.2474
+      }
+     },
+     "4": {
+      "1-3": {
+       "mean_predicted": 0.7046,
+       "observed": 0.3651
+      },
+      "4-7": {
+       "mean_predicted": 0.2597,
+       "observed": 0.4127
+      },
+      "8-10": {
+       "mean_predicted": 0.0357,
+       "observed": 0.2222
+      }
+     }
+    },
+    "segment": {
+     "all": {
+      "1-3": {
+       "mean_predicted": 0.5119,
+       "observed": 0.4538
+      },
+      "4-7": {
+       "mean_predicted": 0.4194,
+       "observed": 0.315
+      },
+      "8-10": {
+       "mean_predicted": 0.0687,
+       "observed": 0.2312
+      }
+     },
+     "1": {
+      "1-3": {
+       "mean_predicted": 0.5998,
+       "observed": 0.5228
+      },
+      "4-7": {
+       "mean_predicted": 0.3472,
+       "observed": 0.2526
+      },
+      "8-10": {
+       "mean_predicted": 0.0531,
+       "observed": 0.2246
+      }
+     },
+     "2": {
+      "1-3": {
+       "mean_predicted": 0.4207,
+       "observed": 0.4422
+      },
+      "4-7": {
+       "mean_predicted": 0.4928,
+       "observed": 0.3401
+      },
+      "8-10": {
+       "mean_predicted": 0.0865,
+       "observed": 0.2177
+      }
+     },
+     "3": {
+      "1-3": {
+       "mean_predicted": 0.4798,
+       "observed": 0.3909
+      },
+      "4-7": {
+       "mean_predicted": 0.4513,
+       "observed": 0.3553
+      },
+      "8-10": {
+       "mean_predicted": 0.0689,
+       "observed": 0.2538
+      }
+     },
+     "4": {
+      "1-3": {
+       "mean_predicted": 0.4273,
+       "observed": 0.3651
+      },
+      "4-7": {
+       "mean_predicted": 0.4754,
+       "observed": 0.4127
+      },
+      "8-10": {
+       "mean_predicted": 0.0973,
+       "observed": 0.2222
+      }
+     }
+    },
+    "draws": "first draw"
+   },
+   "by_size": {
+    "1": {
+     "firms": 284,
+     "mean_d": -0.1367,
+     "sd_d": 1.0172,
+     "full_minus_marginal": -0.3534
+    },
+    "2": {
+     "firms": 144,
+     "mean_d": -0.1658,
+     "sd_d": 1.0927,
+     "full_minus_marginal": -0.281
+    },
+    "3": {
+     "firms": 194,
+     "mean_d": -0.256,
+     "sd_d": 0.9785,
+     "full_minus_marginal": -0.4279
+    },
+    "4": {
+     "firms": 63,
+     "mean_d": -0.2988,
+     "sd_d": 0.9429,
+     "full_minus_marginal": -0.3484
+    }
+   },
+   "precision": {
+    "sd_d_by_size": {
+     "1": 1.0172,
+     "2": 1.0927,
+     "3": 0.9785,
+     "4": 0.9429
+    },
+    "mean_d_by_size": {
+     "1": -0.1367,
+     "2": -0.1658,
+     "3": -0.256,
+     "4": -0.2988
+    },
+    "coverage_by_size": {
+     "4": 1.0,
+     "1": 0.9965,
+     "3": 0.9848,
+     "2": 0.9796
+    },
+    "size_classes_without_pilot_coverage": [],
+    "sd_d_total_at_test_sizes": 1.0181,
+    "variance_within_classes": 1.0329,
+    "variance_between_classes": 0.0036,
+    "size_classes_without_sd": [],
+    "test_firms_assumed": 692,
+    "coverage_of_this_run": 0.9899,
+    "test_firms_expected_in_the_comparison": 685,
+    "mde_80_alpha_0.05_over_3": 0.1259,
+    "mde_80_alpha_0.05": 0.109,
+    "note": "since 0.7 the SD is the total SD of d over the size mix of the retained test sample (test size shares times this run's coverage by size class; class SDs and class means, as the unstratified bootstrap of the test sees them) and n the sum over classes of the test firms times the coverage of that class; test firms from --test-firms, size shares from the audit (no answers read)"
+   },
+   "stability": {
+    "full": {
+     "pairs": 684,
+     "mean_abs_diff_of_probabilities": 0.0047,
+     "mean_abs_diff_of_band_log_score": 0.0696
+    },
+    "segment": {
+     "pairs": 692,
+     "mean_abs_diff_of_probabilities": 0.0034,
+     "mean_abs_diff_of_band_log_score": 0.0351
+    },
+    "k_rule": {
+     "firms": 684,
+     "share_noise": 0.0444,
+     "share_noise_upper_80": 0.0525,
+     "recommended_K": 1,
+     "basis": "the 80% upper bound",
+     "rule": "K = 1 if the 80% upper bound < 0.2, 2 if < 0.5, else 3, with at least 20 firms (plan F1); the test averages the band log scores of the K draws of each card"
+    },
+    "d": {
+     "firms": 684,
+     "noise_variance_of_one_draw_of_d": 0.0466,
+     "variance_of_d_on_these_firms": 1.0504,
+     "share_of_var_d_from_model_noise": 0.0444,
+     "note": "from repeats of both cards on the same firms; var(d) of one draw is the mean of the two draws' variances; averaging K draws divides the noise part by K"
+    },
+    "note": "local model at temperature 0 with a fixed seed: near-deterministic, not exactly (the recorded repeats differ); a retry after an invalid answer usually repeats it"
+   },
+   "h3_full_vs_logit_segment": {
+    "firms": 685,
+    "mean": -0.3605,
+    "ci95": [
+     -0.4559,
+     -0.2651
+    ],
+    "p": 9.999000099990002e-05,
+    "note": "exploratory since 19.11.2026: the full card vs the statistical size x sector segmentation (logit on size and sector); estimates and intervals, no confirmatory claim, no level passed to H1"
+   }
+  },
+  "haiku": {
+   "model": "claude-haiku-5-5",
+   "api": "anthropic",
+   "technical_errors": {
+    "full": 3,
+    "segment": 0,
+    "shuffled": 3
+   },
+   "technical_error_outcomes": {
+    "invalid_format": 6
+   },
+   "draws": "fixed K = 1",
+   "served_model": "claude-haiku-5-5",
+   "run_identity": {
+    "config": {
+     "script": "0.9.5",
+     "api": "anthropic",
+     "model": "claude-haiku-5-5",
+     "base_url": "https://api.anthropic.com",
+     "max_tokens": 4000,
+     "num_ctx": null,
+     "think": null,
+     "chat_template_kwargs": null,
+     "effort": "medium",
+     "max_attempts": 2,
+     "temperature": null,
+     "seed": 20261114,
+     "parser": "safe_counts"
+    },
+    "items_sha256": "4b866118e8b9ac985cebb6b3b0a8063d2a26dd5a259afcc9b64e2baaea48d531",
+    "model_digest": null,
+    "served_model": "claude-haiku-5-5",
+    "answers_sha256": "b33c01025f895bcd838cee101b9cdfcf9d2e9f68c99800d2b4f3b85d2e084315"
+   },
+   "served_models_all_answers": {
+    "claude-haiku-5-5": 3581
+   },
+   "technical_error_definition": "a firm-card is an error when any draw used is invalid",
+   "raw_sums": {
+    "full": {
+     "answers": 689,
+     "share_exactly_100": 0.9303,
+     "share_outside_80_120": 0.0,
+     "share_outside_50_200": 0.0,
+     "min": 87.0,
+     "median": 100.0,
+     "max": 100.0
+    },
+    "segment": {
+     "answers": 692,
+     "share_exactly_100": 0.8396,
+     "share_outside_80_120": 0.0,
+     "share_outside_50_200": 0.0,
+     "min": 86.0,
+     "median": 100.0,
+     "max": 104.0
+    },
+    "shuffled": {
+     "answers": 689,
+     "share_exactly_100": 0.9173,
+     "share_outside_80_120": 0.0015,
+     "share_outside_50_200": 0.0,
+     "min": 71.0,
+     "median": 100.0,
+     "max": 100.0
+    }
+   },
+   "raw_sums_draws": "the draws used (fixed K = 1), valid answers also of firm-cards that are errors: they describe the answers, not the denominator",
+   "technical_error_shares": {
+    "full": 0.0043,
+    "segment": 0.0,
+    "shuffled": 0.0043
+   },
+   "technical_error_flag": {
+    "over_threshold": false,
+    "threshold": 0.05,
+    "full_minus_segment": 0.0043,
+    "ci95": [
+     0.0,
+     0.0101
+    ],
+    "differential": false,
+    "equal_footing_sensitivity": null,
+    "note": "with differential errors only the against-the-claim sensitivity stands on equal footing with the main result; the symmetric worst case then favours the claim"
+   },
+   "coverage": {
+    "eligible_firms": 692,
+    "firms_in_the_main_comparison": 689,
+    "share": 0.9957,
+    "note": "the main result is the mean d among the firms with all used draws of both cards valid (complete cases at this K); a larger K or a model that fails more often removes more firms, so read it with the coverage and the error sensitivities"
+   },
+   "primary": {
+    "firms": 689,
+    "mean_d": 0.0209,
+    "ci95": [
+     -0.0205,
+     0.0623
+    ],
+    "ci95_percentile": [
+     -0.0195,
+     0.0614
+    ],
+    "p": 0.32496750324967505,
+    "p_note": null,
+    "draws": "fixed K = 1",
+    "estimand": "mean d among firms with all used draws of both cards valid (complete cases)",
+    "test": "two-sided bootstrap-t",
+    "p_sign_flip": 0.31866813318668136,
+    "p_t": 0.3229619790149263,
+    "skewness_of_d": -0.3985,
+    "sensitivity": {
+     "errors_as_marginal": {
+      "firms": 692,
+      "mean_d": 0.0202,
+      "p": 0.3341665833416658
+     },
+     "errors_worst_symmetric": {
+      "firms": 692,
+      "mean_d": 0.0003,
+      "p": 0.991000899910009
+     },
+     "errors_against_the_claim": {
+      "firms": 692,
+      "mean_d": 0.0003,
+      "p": 0.991000899910009
+     },
+     "without_sums_outside_range": {
+      "firms": 689,
+      "mean_d": 0.0209,
+      "p": 0.32496750324967505,
+      "share_of_answers_outside": 0.0,
+      "equal_footing": false,
+      "note": "answers with a raw sum outside (50, 200) treated as technical errors (plan F4)"
+     },
+     "floor_0.001": {
+      "firms": 689,
+      "mean_d": 0.0197,
+      "note": "explanatory, no claim"
+     },
+     "floor_0.05": {
+      "firms": 689,
+      "mean_d": 0.0257,
+      "note": "explanatory, no claim"
+     }
+    },
+    "mean_d_weighted_wgtcommon": 0.0001,
+    "weighted_note": "explanatory; SAFE weights are scaled within a wave, so in a development build (two waves) the weighted mean mixes two scales; in the test wave it does not"
+   },
+   "references": {
+    "full": {
+     "firms": 689,
+     "band_logloss": 1.1118,
+     "minus_marginal": -0.0502,
+     "minus_rule": -0.0567,
+     "minus_logit": -0.1307,
+     "minus_logit_segment": -0.0519,
+     "minus_logit_without_applications": -0.1077,
+     "minus_marginal_ci95": [
+      -0.0878,
+      -0.0127
+     ]
+    },
+    "segment": {
+     "firms": 692,
+     "band_logloss": 1.1316,
+     "minus_marginal": -0.0702,
+     "minus_rule": -0.0771,
+     "minus_logit": -0.1508,
+     "minus_logit_segment": -0.0719,
+     "minus_logit_without_applications": -0.1279,
+     "minus_marginal_ci95": [
+      -0.0963,
+      -0.0442
+     ]
+    },
+    "shuffled": {
+     "firms": 689,
+     "band_logloss": 1.1647,
+     "minus_marginal": -0.1036,
+     "minus_rule": -0.1099,
+     "minus_logit": -0.1837,
+     "minus_logit_segment": -0.1052,
+     "minus_logit_without_applications": -0.1611,
+     "minus_marginal_ci95": [
+      -0.1423,
+      -0.0649
+     ]
+    }
+   },
+   "ten_logloss": {
+    "full": 2.2302,
+    "segment": 2.2842
+   },
+   "rps": {
+    "full": 0.2047,
+    "segment": 0.2162
+   },
+   "full_minus_shuffled": {
+    "firms": 686,
+    "mean": 0.0515,
+    "ci95": [
+     0.0009,
+     0.1027
+    ],
+    "note": "diagnostic, no test; an interval that includes 0 leaves open whether matching the other features to this firm improves the score"
+   },
+   "floor_acts": {
+    "full": 0.0,
+    "segment": 0.0,
+    "shuffled": 0.0
+   },
+   "floor_acts_draws": "first draw",
+   "calibration": {
+    "full": {
+     "all": {
+      "1-3": {
+       "mean_predicted": 0.3988,
+       "observed": 0.4543
+      },
+      "4-7": {
+       "mean_predicted": 0.3776,
+       "observed": 0.3135
+      },
+      "8-10": {
+       "mean_predicted": 0.2236,
+       "observed": 0.2322
+      }
+     },
+     "1": {
+      "1-3": {
+       "mean_predicted": 0.3941,
+       "observed": 0.5228
+      },
+      "4-7": {
+       "mean_predicted": 0.3771,
+       "observed": 0.2526
+      },
+      "8-10": {
+       "mean_predicted": 0.2288,
+       "observed": 0.2246
+      }
+     },
+     "2": {
+      "1-3": {
+       "mean_predicted": 0.4092,
+       "observed": 0.4414
+      },
+      "4-7": {
+       "mean_predicted": 0.3702,
+       "observed": 0.3379
+      },
+      "8-10": {
+       "mean_predicted": 0.2206,
+       "observed": 0.2207
+      }
+     },
+     "3": {
+      "1-3": {
+       "mean_predicted": 0.3741,
+       "observed": 0.3929
+      },
+      "4-7": {
+       "mean_predicted": 0.3904,
+       "observed": 0.352
+      },
+      "8-10": {
+       "mean_predicted": 0.2355,
+       "observed": 0.2551
+      }
+     },
+     "4": {
+      "1-3": {
+       "mean_predicted": 0.4733,
+       "observed": 0.3651
+      },
+      "4-7": {
+       "mean_predicted": 0.3569,
+       "observed": 0.4127
+      },
+      "8-10": {
+       "mean_predicted": 0.1698,
+       "observed": 0.2222
+      }
+     }
+    },
+    "segment": {
+     "all": {
+      "1-3": {
+       "mean_predicted": 0.3025,
+       "observed": 0.4538
+      },
+      "4-7": {
+       "mean_predicted": 0.4381,
+       "observed": 0.315
+      },
+      "8-10": {
+       "mean_predicted": 0.2594,
+       "observed": 0.2312
+      }
+     },
+     "1": {
+      "1-3": {
+       "mean_predicted": 0.2971,
+       "observed": 0.5228
+      },
+      "4-7": {
+       "mean_predicted": 0.4342,
+       "observed": 0.2526
+      },
+      "8-10": {
+       "mean_predicted": 0.2687,
+       "observed": 0.2246
+      }
+     },
+     "2": {
+      "1-3": {
+       "mean_predicted": 0.3346,
+       "observed": 0.4422
+      },
+      "4-7": {
+       "mean_predicted": 0.4246,
+       "observed": 0.3401
+      },
+      "8-10": {
+       "mean_predicted": 0.2408,
+       "observed": 0.2177
+      }
+     },
+     "3": {
+      "1-3": {
+       "mean_predicted": 0.2952,
+       "observed": 0.3909
+      },
+      "4-7": {
+       "mean_predicted": 0.4528,
+       "observed": 0.3553
+      },
+      "8-10": {
+       "mean_predicted": 0.252,
+       "observed": 0.2538
+      }
+     },
+     "4": {
+      "1-3": {
+       "mean_predicted": 0.2748,
+       "observed": 0.3651
+      },
+      "4-7": {
+       "mean_predicted": 0.4411,
+       "observed": 0.4127
+      },
+      "8-10": {
+       "mean_predicted": 0.2841,
+       "observed": 0.2222
+      }
+     }
+    },
+    "draws": "first draw"
+   },
+   "by_size": {
+    "1": {
+     "firms": 285,
+     "mean_d": 0.053,
+     "sd_d": 0.5583,
+     "full_minus_marginal": -0.0722
+    },
+    "2": {
+     "firms": 145,
+     "mean_d": 0.025,
+     "sd_d": 0.5092,
+     "full_minus_marginal": -0.0164
+    },
+    "3": {
+     "firms": 196,
+     "mean_d": -0.0001,
+     "sd_d": 0.5574,
+     "full_minus_marginal": -0.0334
+    },
+    "4": {
+     "firms": 63,
+     "mean_d": -0.0685,
+     "sd_d": 0.6236,
+     "full_minus_marginal": -0.0806
+    }
+   },
+   "precision": {
+    "sd_d_by_size": {
+     "1": 0.5583,
+     "2": 0.5092,
+     "3": 0.5574,
+     "4": 0.6236
+    },
+    "mean_d_by_size": {
+     "1": 0.053,
+     "2": 0.025,
+     "3": -0.0001,
+     "4": -0.0685
+    },
+    "coverage_by_size": {
+     "4": 1.0,
+     "1": 1.0,
+     "3": 0.9949,
+     "2": 0.9864
+    },
+    "size_classes_without_pilot_coverage": [],
+    "sd_d_total_at_test_sizes": 0.5557,
+    "variance_within_classes": 0.3075,
+    "variance_between_classes": 0.0013,
+    "size_classes_without_sd": [],
+    "test_firms_assumed": 692,
+    "coverage_of_this_run": 0.9957,
+    "test_firms_expected_in_the_comparison": 689,
+    "mde_80_alpha_0.05_over_3": 0.0685,
+    "mde_80_alpha_0.05": 0.0593,
+    "note": "since 0.7 the SD is the total SD of d over the size mix of the retained test sample (test size shares times this run's coverage by size class; class SDs and class means, as the unstratified bootstrap of the test sees them) and n the sum over classes of the test firms times the coverage of that class; test firms from --test-firms, size shares from the audit (no answers read)"
+   },
+   "stability": {
+    "full": {
+     "pairs": 689,
+     "mean_abs_diff_of_probabilities": 0.0189,
+     "mean_abs_diff_of_band_log_score": 0.1799
+    },
+    "segment": {
+     "pairs": 692,
+     "mean_abs_diff_of_probabilities": 0.0132,
+     "mean_abs_diff_of_band_log_score": 0.1095
+    },
+    "k_rule": {
+     "firms": 689,
+     "share_noise": 0.1723,
+     "share_noise_upper_80": 0.1853,
+     "recommended_K": 1,
+     "basis": "the 80% upper bound",
+     "rule": "K = 1 if the 80% upper bound < 0.2, 2 if < 0.5, else 3, with at least 20 firms (plan F1); the test averages the band log scores of the K draws of each card"
+    },
+    "d": {
+     "firms": 689,
+     "noise_variance_of_one_draw_of_d": 0.0515,
+     "variance_of_d_on_these_firms": 0.2991,
+     "share_of_var_d_from_model_noise": 0.1723,
+     "note": "from repeats of both cards on the same firms; var(d) of one draw is the mean of the two draws' variances; averaging K draws divides the noise part by K"
+    }
+   },
+   "h3_full_vs_logit_segment": {
+    "firms": 689,
+    "mean": -0.0519,
+    "ci95": [
+     -0.0896,
+     -0.0142
+    ],
+    "p": 0.0072992700729927005,
+    "note": "exploratory since 19.11.2026: the full card vs the statistical size x sector segmentation (logit on size and sector); estimates and intervals, no confirmatory claim, no level passed to H1"
+   }
+  },
+  "luna": {
+   "model": "gpt-6-luna",
+   "api": "openai-responses",
+   "technical_errors": {
+    "full": 0,
+    "segment": 0,
+    "shuffled": 0
+   },
+   "technical_error_outcomes": {},
+   "draws": "fixed K = 2",
+   "served_model": "gpt-6-luna",
+   "run_identity": {
+    "config": {
+     "script": "0.9.5",
+     "api": "openai-responses",
+     "model": "gpt-6-luna",
+     "base_url": "https://api.openai.com/v1",
+     "max_tokens": 4000,
+     "num_ctx": null,
+     "think": null,
+     "chat_template_kwargs": null,
+     "effort": "none",
+     "max_attempts": 2,
+     "temperature": null,
+     "seed": 20261114,
+     "parser": "safe_counts"
+    },
+    "items_sha256": "4b866118e8b9ac985cebb6b3b0a8063d2a26dd5a259afcc9b64e2baaea48d531",
+    "model_digest": null,
+    "served_model": "gpt-6-luna",
+    "answers_sha256": "94a42cb652890168e1d6fb9a4aecc1c04984404d030ec4a99b2d0c146ebcf071"
+   },
+   "served_models_all_answers": {
+    "gpt-6-luna": 3462
+   },
+   "technical_error_definition": "a firm-card is an error when any draw used is invalid",
+   "raw_sums": {
+    "full": {
+     "answers": 1384,
+     "share_exactly_100": 0.9465,
+     "share_outside_80_120": 0.0,
+     "share_outside_50_200": 0.0,
+     "min": 97.0,
+     "median": 100.0,
+     "max": 101.0
+    },
+    "segment": {
+     "answers": 1384,
+     "share_exactly_100": 0.8158,
+     "share_outside_80_120": 0.0,
+     "share_outside_50_200": 0.0,
+     "min": 90.0,
+     "median": 100.0,
+     "max": 100.0
+    },
+    "shuffled": {
+     "answers": 692,
+     "share_exactly_100": 0.9379,
+     "share_outside_80_120": 0.0,
+     "share_outside_50_200": 0.0,
+     "min": 98.0,
+     "median": 100.0,
+     "max": 100.0
+    }
+   },
+   "raw_sums_draws": "the draws used (fixed K = 2), valid answers also of firm-cards that are errors: they describe the answers, not the denominator",
+   "technical_error_shares": {
+    "full": 0.0,
+    "segment": 0.0,
+    "shuffled": 0.0
+   },
+   "technical_error_flag": {
+    "over_threshold": false,
+    "threshold": 0.05,
+    "full_minus_segment": 0.0,
+    "ci95": [
+     0.0,
+     0.0
+    ],
+    "differential": false,
+    "equal_footing_sensitivity": null,
+    "note": "with differential errors only the against-the-claim sensitivity stands on equal footing with the main result; the symmetric worst case then favours the claim"
+   },
+   "coverage": {
+    "eligible_firms": 692,
+    "firms_in_the_main_comparison": 692,
+    "share": 1.0,
+    "note": "the main result is the mean d among the firms with all used draws of both cards valid (complete cases at this K); a larger K or a model that fails more often removes more firms, so read it with the coverage and the error sensitivities"
+   },
+   "primary": {
+    "firms": 692,
+    "mean_d": 0.0585,
+    "ci95": [
+     0.0218,
+     0.0952
+    ],
+    "ci95_percentile": [
+     0.0216,
+     0.0946
+    ],
+    "p": 0.0018998100189981002,
+    "p_note": null,
+    "draws": "fixed K = 2",
+    "estimand": "mean d among firms with all used draws of both cards valid (complete cases)",
+    "test": "two-sided bootstrap-t",
+    "p_sign_flip": 0.0015998400159984002,
+    "p_t": 0.0018862589853670506,
+    "skewness_of_d": 0.0307,
+    "sensitivity": {
+     "errors_as_marginal": {
+      "firms": 692,
+      "mean_d": 0.0585,
+      "p": 0.0018998100189981002
+     },
+     "errors_worst_symmetric": {
+      "firms": 692,
+      "mean_d": 0.0585,
+      "p": 0.0018998100189981002
+     },
+     "errors_against_the_claim": {
+      "firms": 692,
+      "mean_d": 0.0585,
+      "p": 0.0018998100189981002
+     },
+     "without_sums_outside_range": {
+      "firms": 692,
+      "mean_d": 0.0585,
+      "p": 0.0018998100189981002,
+      "share_of_answers_outside": 0.0,
+      "equal_footing": false,
+      "note": "answers with a raw sum outside (50, 200) treated as technical errors (plan F4)"
+     },
+     "floor_0.001": {
+      "firms": 692,
+      "mean_d": 0.0537,
+      "note": "explanatory, no claim"
+     },
+     "floor_0.05": {
+      "firms": 692,
+      "mean_d": 0.0641,
+      "note": "explanatory, no claim"
+     }
+    },
+    "mean_d_weighted_wgtcommon": 0.029,
+    "weighted_note": "explanatory; SAFE weights are scaled within a wave, so in a development build (two waves) the weighted mean mixes two scales; in the test wave it does not"
+   },
+   "references": {
+    "full": {
+     "firms": 692,
+     "band_logloss": 1.1238,
+     "minus_marginal": -0.0624,
+     "minus_rule": -0.0692,
+     "minus_logit": -0.143,
+     "minus_logit_segment": -0.0641,
+     "minus_logit_without_applications": -0.12,
+     "minus_marginal_ci95": [
+      -0.1166,
+      -0.0082
+     ]
+    },
+    "segment": {
+     "firms": 692,
+     "band_logloss": 1.1823,
+     "minus_marginal": -0.1209,
+     "minus_rule": -0.1277,
+     "minus_logit": -0.2015,
+     "minus_logit_segment": -0.1226,
+     "minus_logit_without_applications": -0.1785,
+     "minus_marginal_ci95": [
+      -0.1644,
+      -0.0773
+     ]
+    },
+    "shuffled": {
+     "firms": 692,
+     "band_logloss": 1.3101,
+     "minus_marginal": -0.2488,
+     "minus_rule": -0.2556,
+     "minus_logit": -0.3294,
+     "minus_logit_segment": -0.2504,
+     "minus_logit_without_applications": -0.3064,
+     "minus_marginal_ci95": [
+      -0.3132,
+      -0.1843
+     ]
+    }
+   },
+   "ten_logloss": {
+    "full": 2.3772,
+    "segment": 2.3853
+   },
+   "rps": {
+    "full": 0.192,
+    "segment": 0.2117
+   },
+   "full_minus_shuffled": {
+    "firms": 692,
+    "mean": 0.1864,
+    "ci95": [
+     0.137,
+     0.2384
+    ],
+    "note": "diagnostic, no test; an interval that includes 0 leaves open whether matching the other features to this firm improves the score"
+   },
+   "floor_acts": {
+    "full": 0.0014,
+    "segment": 0.0,
+    "shuffled": 0.0014
+   },
+   "floor_acts_draws": "first draw",
+   "calibration": {
+    "full": {
+     "all": {
+      "1-3": {
+       "mean_predicted": 0.4875,
+       "observed": 0.4538
+      },
+      "4-7": {
+       "mean_predicted": 0.4412,
+       "observed": 0.315
+      },
+      "8-10": {
+       "mean_predicted": 0.0713,
+       "observed": 0.2312
+      }
+     },
+     "1": {
+      "1-3": {
+       "mean_predicted": 0.5383,
+       "observed": 0.5228
+      },
+      "4-7": {
+       "mean_predicted": 0.3968,
+       "observed": 0.2526
+      },
+      "8-10": {
+       "mean_predicted": 0.065,
+       "observed": 0.2246
+      }
+     },
+     "2": {
+      "1-3": {
+       "mean_predicted": 0.474,
+       "observed": 0.4422
+      },
+      "4-7": {
+       "mean_predicted": 0.4541,
+       "observed": 0.3401
+      },
+      "8-10": {
+       "mean_predicted": 0.072,
+       "observed": 0.2177
+      }
+     },
+     "3": {
+      "1-3": {
+       "mean_predicted": 0.4348,
+       "observed": 0.3909
+      },
+      "4-7": {
+       "mean_predicted": 0.4824,
+       "observed": 0.3553
+      },
+      "8-10": {
+       "mean_predicted": 0.0829,
+       "observed": 0.2538
+      }
+     },
+     "4": {
+      "1-3": {
+       "mean_predicted": 0.4544,
+       "observed": 0.3651
+      },
+      "4-7": {
+       "mean_predicted": 0.4831,
+       "observed": 0.4127
+      },
+      "8-10": {
+       "mean_predicted": 0.0624,
+       "observed": 0.2222
+      }
+     }
+    },
+    "segment": {
+     "all": {
+      "1-3": {
+       "mean_predicted": 0.5295,
+       "observed": 0.4538
+      },
+      "4-7": {
+       "mean_predicted": 0.3967,
+       "observed": 0.315
+      },
+      "8-10": {
+       "mean_predicted": 0.0738,
+       "observed": 0.2312
+      }
+     },
+     "1": {
+      "1-3": {
+       "mean_predicted": 0.5861,
+       "observed": 0.5228
+      },
+      "4-7": {
+       "mean_predicted": 0.3479,
+       "observed": 0.2526
+      },
+      "8-10": {
+       "mean_predicted": 0.066,
+       "observed": 0.2246
+      }
+     },
+     "2": {
+      "1-3": {
+       "mean_predicted": 0.5244,
+       "observed": 0.4422
+      },
+      "4-7": {
+       "mean_predicted": 0.4034,
+       "observed": 0.3401
+      },
+      "8-10": {
+       "mean_predicted": 0.0723,
+       "observed": 0.2177
+      }
+     },
+     "3": {
+      "1-3": {
+       "mean_predicted": 0.4895,
+       "observed": 0.3909
+      },
+      "4-7": {
+       "mean_predicted": 0.4338,
+       "observed": 0.3553
+      },
+      "8-10": {
+       "mean_predicted": 0.0767,
+       "observed": 0.2538
+      }
+     },
+     "4": {
+      "1-3": {
+       "mean_predicted": 0.4105,
+       "observed": 0.3651
+      },
+      "4-7": {
+       "mean_predicted": 0.4862,
+       "observed": 0.4127
+      },
+      "8-10": {
+       "mean_predicted": 0.1033,
+       "observed": 0.2222
+      }
+     }
+    },
+    "draws": "first draw"
+   },
+   "by_size": {
+    "1": {
+     "firms": 285,
+     "mean_d": 0.0419,
+     "sd_d": 0.5291,
+     "full_minus_marginal": -0.0826
+    },
+    "2": {
+     "firms": 147,
+     "mean_d": 0.0728,
+     "sd_d": 0.5191,
+     "full_minus_marginal": -0.0477
+    },
+    "3": {
+     "firms": 197,
+     "mean_d": 0.1005,
+     "sd_d": 0.4316,
+     "full_minus_marginal": -0.0395
+    },
+    "4": {
+     "firms": 63,
+     "mean_d": -0.0311,
+     "sd_d": 0.4368,
+     "full_minus_marginal": -0.0769
+    }
+   },
+   "precision": {
+    "sd_d_by_size": {
+     "1": 0.5291,
+     "2": 0.5191,
+     "3": 0.4316,
+     "4": 0.4368
+    },
+    "mean_d_by_size": {
+     "1": 0.0419,
+     "2": 0.0728,
+     "3": 0.1005,
+     "4": -0.0311
+    },
+    "coverage_by_size": {
+     "4": 1.0,
+     "1": 1.0,
+     "3": 1.0,
+     "2": 1.0
+    },
+    "size_classes_without_pilot_coverage": [],
+    "sd_d_total_at_test_sizes": 0.4951,
+    "variance_within_classes": 0.2438,
+    "variance_between_classes": 0.0014,
+    "size_classes_without_sd": [],
+    "test_firms_assumed": 692,
+    "coverage_of_this_run": 1.0,
+    "test_firms_expected_in_the_comparison": 692,
+    "mde_80_alpha_0.05_over_3": 0.0609,
+    "mde_80_alpha_0.05": 0.0527,
+    "note": "since 0.7 the SD is the total SD of d over the size mix of the retained test sample (test size shares times this run's coverage by size class; class SDs and class means, as the unstratified bootstrap of the test sees them) and n the sum over classes of the test firms times the coverage of that class; test firms from --test-firms, size shares from the audit (no answers read)"
+   },
+   "stability": {
+    "full": {
+     "pairs": 692,
+     "mean_abs_diff_of_probabilities": 0.0227,
+     "mean_abs_diff_of_band_log_score": 0.217
+    },
+    "segment": {
+     "pairs": 692,
+     "mean_abs_diff_of_probabilities": 0.016,
+     "mean_abs_diff_of_band_log_score": 0.1503
+    },
+    "k_rule": {
+     "firms": 692,
+     "share_noise": 0.2823,
+     "share_noise_upper_80": 0.3029,
+     "recommended_K": 2,
+     "basis": "the 80% upper bound",
+     "rule": "K = 1 if the 80% upper bound < 0.2, 2 if < 0.5, else 3, with at least 20 firms (plan F1); the test averages the band log scores of the K draws of each card"
+    },
+    "d": {
+     "firms": 692,
+     "noise_variance_of_one_draw_of_d": 0.08,
+     "variance_of_d_on_these_firms": 0.2833,
+     "share_of_var_d_from_model_noise": 0.2823,
+     "note": "from repeats of both cards on the same firms; var(d) of one draw is the mean of the two draws' variances; averaging K draws divides the noise part by K"
+    }
+   },
+   "h3_full_vs_logit_segment": {
+    "firms": 692,
+    "mean": -0.0641,
+    "ci95": [
+     -0.118,
+     -0.0101
+    ],
+    "p": 0.020497950204979503,
+    "note": "exploratory since 19.11.2026: the full card vs the statistical size x sector segmentation (logit on size and sector); estimates and intervals, no confirmatory claim, no level passed to H1"
+   }
+  }
+ },
+ "level_check": null,
+ "primary_family": {
+  "comparisons": "H1 full vs segment per model (primary); H3 full vs logit_segment per model (exploratory, no claim, no level passed)",
+  "family_size": 3,
+  "models_missing_from_this_report": 0,
+  "p_directional_H1": {
+   "qwen": 1.0,
+   "haiku": 0.32496750324967505,
+   "luna": 0.0018998100189981002
+  },
+  "procedure": "Holm over the three H1 at alpha 0.05; p values directional (p if the mean difference > 0, else 1); since 0.8, the project lead's decision of 19.11.2026 (the graph with H3 is no longer used)",
+  "holm_rejected": {
+   "luna": true,
+   "haiku": false,
+   "qwen": false
+  },
+  "supports_claim": {
+   "qwen": false,
+   "haiku": false,
+   "luna": true
+  },
+  "h3_exploratory": {
+   "p_directional_shown_without_claim": {
+    "qwen": 1.0,
+    "haiku": 1.0,
+    "luna": 1.0
+   },
+   "note": "estimates and intervals in each model's h3_full_vs_logit_segment; no confirmatory success is declared and no level is passed to H1"
+  },
+  "alpha": 0.05,
+  "scope": "a rejection supports the claim for that model only: the full profile improves the forecast over the short card in that model; it is not a proof of an advantage over the statistical model nor of a value for product decisions"
+ },
+ "fits": {
+  "total": 75,
+  "failed": 0
+ }
+}

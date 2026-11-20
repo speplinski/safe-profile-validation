@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+title: "SAFE validation: code and data for 'Does a Firm Profile Help an AI Agent Forecast Real Survey Answers? A Prospectively Specified Validation on the EC/ECB Survey on the Access to Finance of Enterprises for Polish Firms'"
+authors:
+  - family-names: Pepliński
+    given-names: Szymon P.
+    affiliation: Generatywnie
+    orcid: https://orcid.org/0009-0008-2928-0655
+version: 1.0.2
+doi: 10.5281/zenodo.24396236
+license: Apache-2.0
+message: If you use this software or its results, please cite it as below; the SAFE data source must be cited as 'EC/ECB Survey on the access to finance of enterprises'.

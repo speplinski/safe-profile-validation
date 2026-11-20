@@ -1,0 +1,16 @@
+[
+  {
+    "file": "ecb.SAFE_microdata.zip",
+    "url": "https://www.ecb.europa.eu/stats/ecb_surveys/safe/shared/pdf/ecb.SAFE_microdata.zip",
+    "downloaded_at": "2026-11-12T15:48:43.871431+00:00",
+    "bytes": 139698540,
+    "sha256": "64a118f1bf2dddffe03a47b5a283a9b2a8705377f091b4a0b1a60906ccc10fc3"
+  },
+  {
+    "file": "ecb.safemi.en.pdf",
+    "url": "https://www.ecb.europa.eu/stats/pdf/surveys/sme/ecb.safemi.en.pdf",
+    "downloaded_at": "2026-11-12T15:48:44.726313+00:00",
+    "bytes": 625726,
+    "sha256": "ce4b5fdc41ec79bb602987be553b6ab8272f020ce85392c2640afd6648a95877"
+  }
+]

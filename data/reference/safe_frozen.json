@@ -1,0 +1,148 @@
+{
+ "status": "frozen (approved by the project lead on 2026-11-19); not changed afterwards",
+ "script": "safe_make_frozen 0.4.1",
+ "script_sha256": "07adbdb718f94dc95b09159f406117f13e4aa09b18b20bfff061aada8f735f37",
+ "sources": {
+  "first": "ca61fc5b8cdd414d38012e1e55cbdcfb804edc98acaed0fa3e4bec48bd03402a",
+  "calibration": "059919442a79f1f2badfde275afc7f053c6f00c458582ce63ee7d9387d3fac14",
+  "qualification": "384805d3cc216911385b36133c9d7b9fe5b7ac818c00c5e8c3444d617b2976a1"
+ },
+ "pilot_build_items_sha256": "5ff27ec2087862755ac9565baaa3dc4806f43c2ad289de8a1c6016729cd32128",
+ "models": {
+  "haiku": {
+   "config": {
+    "script": "0.9.5",
+    "api": "anthropic",
+    "model": "claude-haiku-5-5",
+    "base_url": "https://api.anthropic.com",
+    "max_tokens": 4000,
+    "num_ctx": null,
+    "think": null,
+    "chat_template_kwargs": null,
+    "effort": "medium",
+    "max_attempts": 2,
+    "temperature": null,
+    "seed": 20261114,
+    "parser": "safe_counts"
+   },
+   "model_digest": null,
+   "server": {
+    "openai_sdk": null,
+    "anthropic_sdk": "2.8.0",
+    "anthropic_version": "2026-10-21",
+    "ollama_version": null,
+    "ollama_show": null,
+    "model_id": "claude-haiku-5-5",
+    "model_created": "2026-10-07 18:00:00+00:00"
+   },
+   "served_model": "claude-haiku-5-5",
+   "K": 1
+  },
+  "luna": {
+   "config": {
+    "script": "0.9.5",
+    "api": "openai-responses",
+    "model": "gpt-6-luna",
+    "base_url": "https://api.openai.com/v1",
+    "max_tokens": 4000,
+    "num_ctx": null,
+    "think": null,
+    "chat_template_kwargs": null,
+    "effort": "none",
+    "max_attempts": 2,
+    "temperature": null,
+    "seed": 20261114,
+    "parser": "safe_counts"
+   },
+   "model_digest": null,
+   "server": {
+    "openai_sdk": "3.53.0",
+    "anthropic_sdk": null,
+    "anthropic_version": null,
+    "ollama_version": null,
+    "ollama_show": null,
+    "model_id": "gpt-6-luna",
+    "model_created": 1789406102
+   },
+   "served_model": "gpt-6-luna",
+   "K": 2
+  },
+  "qwen": {
+   "config": {
+    "script": "0.9.5",
+    "api": "ollama",
+    "model": "qwen3.8:27b",
+    "base_url": "http://127.0.0.1:11434",
+    "max_tokens": 2000,
+    "num_ctx": 32768,
+    "think": "false",
+    "chat_template_kwargs": null,
+    "effort": null,
+    "max_attempts": 2,
+    "temperature": 0,
+    "seed": 20261114,
+    "parser": "safe_counts"
+   },
+   "model_digest": "47951e4a666180bc2aedfc93c169472f2de783696fe196efbf063f5730ecf163",
+   "server": {
+    "openai_sdk": null,
+    "anthropic_sdk": null,
+    "anthropic_version": null,
+    "ollama_version": "0.40.15",
+    "ollama_show": {
+     "details": {
+      "parent_model": "",
+      "format": "safetensors",
+      "family": "qwen3_5",
+      "families": null,
+      "parameter_size": "27.8B",
+      "quantization_level": "nvfp4",
+      "runner": "mlx"
+     },
+     "parameters": "repeat_penalty                 1\ntemperature                    1\ntop_k                          20\ntop_p                          0.95\nmin_p                          0\npresence_penalty               0"
+    },
+    "model_id": null,
+    "model_created": null
+   },
+   "served_model": null,
+   "K": 1
+  }
+ },
+ "runner_note": "the confirmatory runs use run_b_k2 0.9.5; the third pilot ran ['0.9.4']; 0.9.5 differs from 0.9.4 only in recording the sha256 of its modules per session (no change of the requests or the parsing)",
+ "served_model_note": "the identifier the API reported in the pilot (an alias where it reported one); not changed to a dated name, so a silent change of the model behind an alias is not detected",
+ "build": {
+  "split": "test",
+  "elicitation": "counts_nozero",
+  "parser": "safe_counts",
+  "seed": 20261121,
+  "draws_of_full_and_segment": 2,
+  "command": "safe_build.py --split test --elicitation counts_nozero --seed 20261121 --repeats 1 --repeat-firms 100000",
+  "card_key_sha256": "dc5a4e42954c9ac4cccc1843c17845fedf47892f46fa71ec2d05acf40418f9f8",
+  "prompt_sha256": "663a6725480e2d1e7c6a1f0ad52038a57f6dedd17b9e26a93dfb63d640b94f7a",
+  "source_sha256": "15fef1438998053d13765e34c72cdbae6ebe1ed24c3b53ebbf569eb279974f1d",
+  "records": 692
+ },
+ "test_build": {
+  "items_sha256": "4b866118e8b9ac985cebb6b3b0a8063d2a26dd5a259afcc9b64e2baaea48d531",
+  "key_json_sha256": "b55eac91138db1afe229e9b6c33cd90da088c1c6b73b782cb17bc98869675c2b",
+  "source_sha256": "15fef1438998053d13765e34c72cdbae6ebe1ed24c3b53ebbf569eb279974f1d",
+  "records": 692,
+  "items": 3460,
+  "repeat_firms": 692
+ },
+ "family": {
+  "primary": "Holm over the three H1 at alpha 0.05, directional (p if the mean d > 0, else 1)",
+  "h3": "exploratory: estimates and intervals, no confirmatory claim, no level passed to H1"
+ },
+ "materials_sha256": {
+  "scripts/safe_analyze.py": "4190a522274931e939312bf3366d91814d73408eeed158973c5f3d5caaf197d0",
+  "scripts/safe_build.py": "64d8f8e235141f2e0590c63f0e9e1b2f35ca78439775cc6d9569f192060debe8",
+  "scripts/safe_prompt.py": "663a6725480e2d1e7c6a1f0ad52038a57f6dedd17b9e26a93dfb63d640b94f7a",
+  "scripts/run_b_k2.py": "0630be46a103e10d5281def300c786562cb941dea5f9c5adfb8f64a9059dcfc0",
+  "scripts/llm_serving_check.py": "fe3a102149f2275443ae384d59d6c04b087df7e65bbbc311fd0f39475ff911c4",
+  "scripts/ollama_provenance.py": "d2c820b1b1ec96f38d9d13fdb0c82d4d5fd76eb490ee524362e2f9b2a9b4575f",
+  "scripts/safe_signal_check.py": "8e64356790cba6f84d5e5a0b3c64987d74fea032e975eb99ceb04bedb423bebc",
+  "data/reference/safe_card_key.json": "dc5a4e42954c9ac4cccc1843c17845fedf47892f46fa71ec2d05acf40418f9f8",
+  "data/reference/safe_validation_plan.json": "ee584a5f72fb2686798ef03adb7dd1ce6c4e27d067b1e5276f4f082505fb4175"
+ }
+}

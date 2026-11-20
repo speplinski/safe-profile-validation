@@ -1,0 +1,15 @@
+{
+ "source": "https://platform.claude.com/docs/en/about-claude/pricing",
+ "read_on": "2026-11-15",
+ "page_stamp": "none on the page (it defers to claude.com/pricing for the most current prices)",
+ "kind": "D (the model's rows read verbatim on the page on the date above)",
+ "currency": "USD per million tokens",
+ "models": {
+  "claude-haiku-5-5": {
+   "prompts_up_to_100000_tokens": {"input": 0.10, "cache_write_5m": 0.125, "cache_write_1h": 0.20, "cache_read": 0.01, "output": 0.50},
+   "prompts_over_100000_tokens": {"input": 0.50, "cache_write_5m": 0.625, "cache_write_1h": 1.0, "cache_read": 0.05, "output": 2.50},
+   "threshold_counts": "all input tokens of the request, cache reads and writes included; each request priced on its own",
+   "batch_discount": "50% on input and output (not used: the pilot runs on the Messages API)"
+  }
+ }
+}

@@ -1,0 +1,377 @@
+{
+ "script_sha256": "e66568297743ac65d41ac333c3c198283fa423bdf0d596ac1f6c9c3096e6290e",
+ "reps": 1500,
+ "resamples": 1000,
+ "seed": 20261118,
+ "results": {
+  "normal | n=120": {
+   "sign_flip": [
+    0.0507,
+    0.0173
+   ],
+   "t": [
+    0.048,
+    0.0153
+   ],
+   "bootstrap_t": [
+    0.0467,
+    0.0147
+   ],
+   "percentile_interval": [
+    0.0527,
+    0.0213
+   ],
+   "claim_tail": {
+    "sign_flip": [
+     0.0273,
+     0.0087
+    ],
+    "t": [
+     0.026,
+     0.008
+    ],
+    "bootstrap_t": [
+     0.0233,
+     0.0067
+    ]
+   },
+   "other_tail": {
+    "sign_flip": [
+     0.0233,
+     0.0087
+    ],
+    "t": [
+     0.022,
+     0.0073
+    ],
+    "bootstrap_t": [
+     0.0233,
+     0.008
+    ]
+   }
+  },
+  "normal | n=692": {
+   "sign_flip": [
+    0.0487,
+    0.018
+   ],
+   "t": [
+    0.0487,
+    0.018
+   ],
+   "bootstrap_t": [
+    0.05,
+    0.018
+   ],
+   "percentile_interval": [
+    0.0507,
+    0.0193
+   ],
+   "claim_tail": {
+    "sign_flip": [
+     0.0253,
+     0.008
+    ],
+    "t": [
+     0.0253,
+     0.008
+    ],
+    "bootstrap_t": [
+     0.0253,
+     0.008
+    ]
+   },
+   "other_tail": {
+    "sign_flip": [
+     0.0233,
+     0.01
+    ],
+    "t": [
+     0.0233,
+     0.01
+    ],
+    "bootstrap_t": [
+     0.0247,
+     0.01
+    ]
+   }
+  },
+  "skewed lognormal | n=120": {
+   "sign_flip": [
+    0.084,
+    0.0433
+   ],
+   "t": [
+    0.0807,
+    0.0367
+   ],
+   "bootstrap_t": [
+    0.0607,
+    0.0273
+   ],
+   "percentile_interval": [
+    0.0807,
+    0.0367
+   ],
+   "claim_tail": {
+    "sign_flip": [
+     0.01,
+     0.0027
+    ],
+    "t": [
+     0.0093,
+     0.0007
+    ],
+    "bootstrap_t": [
+     0.0047,
+     0.0
+    ]
+   },
+   "other_tail": {
+    "sign_flip": [
+     0.074,
+     0.0407
+    ],
+    "t": [
+     0.0713,
+     0.036
+    ],
+    "bootstrap_t": [
+     0.056,
+     0.0273
+    ]
+   }
+  },
+  "skewed lognormal | n=692": {
+   "sign_flip": [
+    0.066,
+    0.03
+   ],
+   "t": [
+    0.066,
+    0.0293
+   ],
+   "bootstrap_t": [
+    0.0613,
+    0.0213
+   ],
+   "percentile_interval": [
+    0.0647,
+    0.0267
+   ],
+   "claim_tail": {
+    "sign_flip": [
+     0.014,
+     0.002
+    ],
+    "t": [
+     0.014,
+     0.0033
+    ],
+    "bootstrap_t": [
+     0.0107,
+     0.0013
+    ]
+   },
+   "other_tail": {
+    "sign_flip": [
+     0.052,
+     0.028
+    ],
+    "t": [
+     0.052,
+     0.026
+    ],
+    "bootstrap_t": [
+     0.0507,
+     0.02
+    ]
+   }
+  },
+  "3% at -5.8 | n=120": {
+   "sign_flip": [
+    0.0847,
+    0.048
+   ],
+   "t": [
+    0.0767,
+    0.04
+   ],
+   "bootstrap_t": [
+    0.054,
+    0.026
+   ],
+   "percentile_interval": [
+    0.0707,
+    0.038
+   ],
+   "claim_tail": {
+    "sign_flip": [
+     0.076,
+     0.0467
+    ],
+    "t": [
+     0.0687,
+     0.0387
+    ],
+    "bootstrap_t": [
+     0.05,
+     0.026
+    ]
+   },
+   "other_tail": {
+    "sign_flip": [
+     0.0087,
+     0.0013
+    ],
+    "t": [
+     0.008,
+     0.0013
+    ],
+    "bootstrap_t": [
+     0.004,
+     0.0
+    ]
+   }
+  },
+  "3% at -5.8 | n=692": {
+   "sign_flip": [
+    0.0553,
+    0.024
+   ],
+   "t": [
+    0.0527,
+    0.0227
+   ],
+   "bootstrap_t": [
+    0.0473,
+    0.018
+   ],
+   "percentile_interval": [
+    0.056,
+    0.0207
+   ],
+   "claim_tail": {
+    "sign_flip": [
+     0.04,
+     0.02
+    ],
+    "t": [
+     0.038,
+     0.0187
+    ],
+    "bootstrap_t": [
+     0.0333,
+     0.0153
+    ]
+   },
+   "other_tail": {
+    "sign_flip": [
+     0.0153,
+     0.004
+    ],
+    "t": [
+     0.0147,
+     0.004
+    ],
+    "bootstrap_t": [
+     0.014,
+     0.0027
+    ]
+   }
+  },
+  "45% zeros + skewed | n=120": {
+   "sign_flip": [
+    0.064,
+    0.024
+   ],
+   "t": [
+    0.06,
+    0.0227
+   ],
+   "bootstrap_t": [
+    0.0553,
+    0.022
+   ],
+   "percentile_interval": [
+    0.0673,
+    0.0247
+   ],
+   "claim_tail": {
+    "sign_flip": [
+     0.0167,
+     0.0027
+    ],
+    "t": [
+     0.014,
+     0.002
+    ],
+    "bootstrap_t": [
+     0.014,
+     0.0013
+    ]
+   },
+   "other_tail": {
+    "sign_flip": [
+     0.0473,
+     0.0213
+    ],
+    "t": [
+     0.046,
+     0.0207
+    ],
+    "bootstrap_t": [
+     0.0413,
+     0.0207
+    ]
+   }
+  },
+  "45% zeros + skewed | n=692": {
+   "sign_flip": [
+    0.052,
+    0.016
+   ],
+   "t": [
+    0.0513,
+    0.016
+   ],
+   "bootstrap_t": [
+    0.05,
+    0.016
+   ],
+   "percentile_interval": [
+    0.0573,
+    0.0167
+   ],
+   "claim_tail": {
+    "sign_flip": [
+     0.0193,
+     0.0053
+    ],
+    "t": [
+     0.0167,
+     0.0053
+    ],
+    "bootstrap_t": [
+     0.0167,
+     0.0053
+    ]
+   },
+   "other_tail": {
+    "sign_flip": [
+     0.0327,
+     0.0107
+    ],
+    "t": [
+     0.0347,
+     0.0107
+    ],
+    "bootstrap_t": [
+     0.0333,
+     0.0107
+    ]
+   }
+  }
+ },
+ "note": "pairs are the rejection rates at alpha 0.05 and 0.05/3 under a true null; claim_tail / other_tail split them by the sign of the mean (the claim needs d > 0, so its error is the claim tail; nominal half of the two-sided rate: 0.025 and 0.0083)"
+}

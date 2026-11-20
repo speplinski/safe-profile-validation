@@ -1,0 +1,235 @@
+{
+ "script": "safe_h1_qualification 0.2",
+ "script_sha256": "30514f732bdf2d1c049af9dd3a84363881c4c43d3fa27c59d832e7c1d4c524e9",
+ "calibration_report_sha256": "059919442a79f1f2badfde275afc7f053c6f00c458582ce63ee7d9387d3fac14",
+ "calibration_build_items_sha256": "5ff27ec2087862755ac9565baaa3dc4806f43c2ad289de8a1c6016729cd32128",
+ "K_by_model": {
+  "qwen": 1,
+  "haiku": 1,
+  "luna": 2
+ },
+ "k_source": {
+  "first_report_sha256": "ca61fc5b8cdd414d38012e1e55cbdcfb804edc98acaed0fa3e4bec48bd03402a",
+  "first_report_script": "safe_analyze 0.7",
+  "recommended_K": {
+   "qwen": 1,
+   "haiku": 1,
+   "luna": 2
+  }
+ },
+ "calibration_ready_for_freezing_as_written": false,
+ "h1_bounds": 18,
+ "h1_bounds_within_levels": 18,
+ "correction": "simultaneous one-sided 0.95 Clopper-Pearson, Bonferroni over all 36 bounds of the report (not relaxed)",
+ "h1_family_qualified": true,
+ "h3": {
+  "bounds_over_their_level": [
+   "haiku/H3/expected_complete_cases at 0.01667",
+   "haiku/H3/all_eligible at 0.01667",
+   "luna/H3/expected_complete_cases at 0.025",
+   "luna/H3/all_eligible at 0.025"
+  ],
+  "role": "exploratory since 19.11.2026: estimates and intervals, no confirmatory claim, no level passed to H1"
+ },
+ "decision": "the project lead (19.11.2026): primary family = the three H1 under Holm at alpha 0.05 with the directional rule; the choice between the graph and Holm was open in the plan and is made before the confirmatory analysis, after the development results, because the calibration of H3 was not confirmed for two models and in the graph a rejected H3 passes its level to the other H1; no model's results were selected",
+ "checks_h1": [
+  {
+   "check": "qwen/H1/expected_complete_cases",
+   "level": 0.01667,
+   "claim_tail_rejections": 40,
+   "reps": 4000,
+   "rate": 0.01,
+   "simultaneous_upper": 0.01566,
+   "within_level": true,
+   "warning_over_0.0125": false,
+   "within_level_full_precision": true
+  },
+  {
+   "check": "qwen/H1/expected_complete_cases",
+   "level": 0.025,
+   "claim_tail_rejections": 52,
+   "reps": 4000,
+   "rate": 0.013,
+   "simultaneous_upper": 0.0193,
+   "within_level": true,
+   "warning_over_0.0125": false,
+   "within_level_full_precision": true
+  },
+  {
+   "check": "qwen/H1/expected_complete_cases",
+   "level": 0.05,
+   "claim_tail_rejections": 91,
+   "reps": 4000,
+   "rate": 0.02275,
+   "simultaneous_upper": 0.03071,
+   "within_level": true,
+   "warning_over_0.0125": false,
+   "within_level_full_precision": true
+  },
+  {
+   "check": "qwen/H1/all_eligible",
+   "level": 0.01667,
+   "claim_tail_rejections": 41,
+   "reps": 4000,
+   "rate": 0.01025,
+   "simultaneous_upper": 0.01597,
+   "within_level": true,
+   "warning_over_0.0125": false,
+   "within_level_full_precision": true
+  },
+  {
+   "check": "qwen/H1/all_eligible",
+   "level": 0.025,
+   "claim_tail_rejections": 54,
+   "reps": 4000,
+   "rate": 0.0135,
+   "simultaneous_upper": 0.0199,
+   "within_level": true,
+   "warning_over_0.0125": false,
+   "within_level_full_precision": true
+  },
+  {
+   "check": "qwen/H1/all_eligible",
+   "level": 0.05,
+   "claim_tail_rejections": 112,
+   "reps": 4000,
+   "rate": 0.028,
+   "simultaneous_upper": 0.0367,
+   "within_level": true,
+   "warning_over_0.0125": false,
+   "within_level_full_precision": true
+  },
+  {
+   "check": "haiku/H1/expected_complete_cases",
+   "level": 0.01667,
+   "claim_tail_rejections": 35,
+   "reps": 4000,
+   "rate": 0.00875,
+   "simultaneous_upper": 0.01412,
+   "within_level": true,
+   "warning_over_0.0125": false,
+   "within_level_full_precision": true
+  },
+  {
+   "check": "haiku/H1/expected_complete_cases",
+   "level": 0.025,
+   "claim_tail_rejections": 51,
+   "reps": 4000,
+   "rate": 0.01275,
+   "simultaneous_upper": 0.019,
+   "within_level": true,
+   "warning_over_0.0125": false,
+   "within_level_full_precision": true
+  },
+  {
+   "check": "haiku/H1/expected_complete_cases",
+   "level": 0.05,
+   "claim_tail_rejections": 103,
+   "reps": 4000,
+   "rate": 0.02575,
+   "simultaneous_upper": 0.03414,
+   "within_level": true,
+   "warning_over_0.0125": false,
+   "within_level_full_precision": true
+  },
+  {
+   "check": "haiku/H1/all_eligible",
+   "level": 0.01667,
+   "claim_tail_rejections": 35,
+   "reps": 4000,
+   "rate": 0.00875,
+   "simultaneous_upper": 0.01412,
+   "within_level": true,
+   "warning_over_0.0125": false,
+   "within_level_full_precision": true
+  },
+  {
+   "check": "haiku/H1/all_eligible",
+   "level": 0.025,
+   "claim_tail_rejections": 51,
+   "reps": 4000,
+   "rate": 0.01275,
+   "simultaneous_upper": 0.019,
+   "within_level": true,
+   "warning_over_0.0125": false,
+   "within_level_full_precision": true
+  },
+  {
+   "check": "haiku/H1/all_eligible",
+   "level": 0.05,
+   "claim_tail_rejections": 103,
+   "reps": 4000,
+   "rate": 0.02575,
+   "simultaneous_upper": 0.03414,
+   "within_level": true,
+   "warning_over_0.0125": false,
+   "within_level_full_precision": true
+  },
+  {
+   "check": "luna/H1/expected_complete_cases",
+   "level": 0.01667,
+   "claim_tail_rejections": 34,
+   "reps": 4000,
+   "rate": 0.0085,
+   "simultaneous_upper": 0.0138,
+   "within_level": true,
+   "warning_over_0.0125": false,
+   "within_level_full_precision": true
+  },
+  {
+   "check": "luna/H1/expected_complete_cases",
+   "level": 0.025,
+   "claim_tail_rejections": 46,
+   "reps": 4000,
+   "rate": 0.0115,
+   "simultaneous_upper": 0.01749,
+   "within_level": true,
+   "warning_over_0.0125": false,
+   "within_level_full_precision": true
+  },
+  {
+   "check": "luna/H1/expected_complete_cases",
+   "level": 0.05,
+   "claim_tail_rejections": 103,
+   "reps": 4000,
+   "rate": 0.02575,
+   "simultaneous_upper": 0.03414,
+   "within_level": true,
+   "warning_over_0.0125": false,
+   "within_level_full_precision": true
+  },
+  {
+   "check": "luna/H1/all_eligible",
+   "level": 0.01667,
+   "claim_tail_rejections": 34,
+   "reps": 4000,
+   "rate": 0.0085,
+   "simultaneous_upper": 0.0138,
+   "within_level": true,
+   "warning_over_0.0125": false,
+   "within_level_full_precision": true
+  },
+  {
+   "check": "luna/H1/all_eligible",
+   "level": 0.025,
+   "claim_tail_rejections": 46,
+   "reps": 4000,
+   "rate": 0.0115,
+   "simultaneous_upper": 0.01749,
+   "within_level": true,
+   "warning_over_0.0125": false,
+   "within_level_full_precision": true
+  },
+  {
+   "check": "luna/H1/all_eligible",
+   "level": 0.05,
+   "claim_tail_rejections": 103,
+   "reps": 4000,
+   "rate": 0.02575,
+   "simultaneous_upper": 0.03414,
+   "within_level": true,
+   "warning_over_0.0125": false,
+   "within_level_full_precision": true
+  }
+ ]
+}
